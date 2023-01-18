@@ -1,0 +1,81 @@
+/*RESET*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+
+    scroll-behavior: smooth;
+}
+
+:root {
+    --dark-color: #1D1E1E;
+    --light-color: #E5E9EA;
+    --accent-color: #69AFB1;
+    --bg-gradient-color: linear-gradient(180deg, #E5E9EA 6.19%, #1D1E1E 403.95%);
+
+    --button-shadow: 0px 2px 20px rgba(29, 30, 30, 0.14);
+
+    --font-family: 'Visuelt Pro';
+    --font-size-logo: 1.5rem;
+    --font-size-navigation: 0.9375rem;
+    --font-size-button: 0.75rem;
+    --font-size-subtitle: 1rem;
+    --font-size-h1: 2.75rem;
+    --font-size-price: 1.25rem;
+}
+
+
+
+/*ESTILOS GENERALES*/
+body {
+    background: var(--dark-color);
+    font-family: var(--font-family);
+    color: var(--light-color);
+    /* height: 100%; */
+}
+
+.layout-container {
+    width: 85%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+
+
+/*Componente NAVBAR*/
+.navbar {
+    background: var(--light-color);
+}
+
+.site-logo a {
+    display: inline-block;
+    max-width: 250px;
+    text-decoration: none;
+
+    color: var(--accent-color);
+
+    font-size: var(--font-size-logo);
+    font-weight: 700;
+}
+
+
+
+/*Componente BANNER*/
+.banner {
+    margin: 3em 0;
+    width: 100%;
+    height: 300px;
+}
+
+#img-banner{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 12px;
+}

@@ -9,19 +9,112 @@
     <link rel="icon" href="assets/icons/favicon.ico" />
 
     <!--ESTILOS DE AUTOR(AS)-->
-    <link rel="stylesheet" href="styles/estilos.css" />
+    <link rel="stylesheet" href="styles/styles.css" />
 
 </head>
 
 <body>
 
     <header>
-        <nav>
 
+        <!--NAVBAR-->
+        <nav class="navbar">
+            <div class="layout-container">
+                <div class="site-logo">
+                    <!-- svg -->
+                    <a href="index.html">Tech & things</a>
+                </div>
+
+                <ul class="navegacion">
+                    <li>Productos</li>
+                    <li>Categorías</li>
+                    <li>Promociones</li>
+                </ul>
+
+                <div class="header-cart">
+                    <a href="#">
+                        <span class="header-cart-count" data-header-cart-count="1"></span>
+                    </a>
+                </div>
+            </div>
         </nav>
+
     </header>
 
-    <main>
+    <main class="layout-container">
+
+        <!--BANNER-->
+        <div class="banner">
+            <a href="#">
+                <img src="../assets/imgs/banner-1.jpg" alt="" id="img-banner">
+            </a>
+        </div>
+
+        <!--PASTILLAS DE CONTENIDO-->
+        <div>
+            <div>
+                <!-- svg podría ser un ::before-->
+                <div class="pastilla-text">
+                    <span>Envíos gratis</span>
+                    <p>a todo el país en 24hs</p>
+                </div>
+            </div>
+
+            <div>
+                <!-- svg podría ser un ::before -->
+                <div class="pastilla-text">
+                    <span>Atención las 24hs</span>
+                    <p>ante cualquier consulta</p>
+                </div>
+            </div>
+
+            <div>
+                <!-- svg podría ser un ::before -->
+                <div class="pastilla-text">
+                    <span>Devolución sin costo</span>
+                    <p>si no es lo que esperabas</p>
+                </div>
+            </div>
+
+            <div>
+                <!-- svg podría ser un ::before -->
+                <div class="pastilla-text">
+                    <span>Ofertas y descuentos</span>
+                    <p>nuevos todos los días</p>
+                </div>
+            </div>
+        </div>
+
+        <!--PRODUCTOS-->
+        <section>
+            <!-- svg divisor -->
+
+            <!--NAVEGACIÓN SECUNDARIA-->
+            <ul class="navegacion">
+                <li>Todos</li>
+                <li>Celulares</li>
+                <li>Notebooks</li>
+                <li>Periféricos PC</li>
+            </ul>
+
+            <h1>Celulares</h1>
+            <h2>Productos</h2>
+
+            <!--CARDS-->
+            <div class="cards-container">
+
+                <div class="card">
+                    <img src="" alt="">
+                    <span>Categoría</span>
+                    <p>Iphone 9 Pro Max</p>
+                    <p>$90.000</p>
+                    <button>Más info</button>
+                    <button>Agregar al carrito</button>
+                </div>
+
+            </div>
+
+        </section>
 
     </main>
 
