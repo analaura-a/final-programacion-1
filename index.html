@@ -19,97 +19,243 @@
 
         <!--NAVBAR-->
         <nav class="navbar">
-            <div class="layout-container">
-                <div class="site-logo">
-                    <!-- svg -->
-                    <a href="index.html">Tech & things</a>
-                </div>
+            <div class="layout-container navbar-flex">
 
-                <ul class="navegacion">
-                    <li>Productos</li>
-                    <li>Categorías</li>
-                    <li>Promociones</li>
-                </ul>
+                <div class="navbar-navigation">
+
+                    <div class="site-logo">
+                        <!-- svg -->
+                        <a href="index.html">Tech & things</a>
+                    </div>
+
+                    <ul class="navigation">
+                        <li><a href="" class="active">Productos</a></li>
+                        <li><a href="">Categorías</a></li>
+                        <li><a href="">Promociones</a></li>
+                    </ul>
+
+                </div>
 
                 <div class="header-cart">
                     <a href="#">
-                        <span class="header-cart-count" data-header-cart-count="1"></span>
+                        <span class="header-cart-count" data-header-cart-count="0">0</span>
                     </a>
                 </div>
+
             </div>
         </nav>
 
     </header>
 
-    <main class="layout-container">
 
-        <!--BANNER-->
-        <div class="banner">
-            <a href="#">
-                <img src="../assets/imgs/banner-1.jpg" alt="" id="img-banner">
-            </a>
-        </div>
 
-        <!--PASTILLAS DE CONTENIDO-->
-        <div>
-            <div>
-                <!-- svg podría ser un ::before-->
-                <div class="pastilla-text">
+    <main>
+
+        <div class="layout-container">
+
+            <!--BANNER-->
+            <div class="banner">
+                <a href="#">
+                    <img src="../assets/imgs/banner-2.jpg" alt="" id="img-banner">
+                </a>
+            </div>
+
+
+
+            <!--PASTILLAS DE CONTENIDO-->
+            <div class="container-pastillas">
+                <div class="pastilla">
+
+                    <!-- svg podría ser un ::before-->
                     <span>Envíos gratis</span>
                     <p>a todo el país en 24hs</p>
-                </div>
-            </div>
 
-            <div>
-                <!-- svg podría ser un ::before -->
-                <div class="pastilla-text">
+                </div>
+
+                <div class="pastilla">
+                    <!-- svg podría ser un ::before -->
+
                     <span>Atención las 24hs</span>
                     <p>ante cualquier consulta</p>
-                </div>
-            </div>
 
-            <div>
-                <!-- svg podría ser un ::before -->
-                <div class="pastilla-text">
+                </div>
+
+                <div class="pastilla">
+                    <!-- svg podría ser un ::before -->
+
                     <span>Devolución sin costo</span>
                     <p>si no es lo que esperabas</p>
-                </div>
-            </div>
 
-            <div>
-                <!-- svg podría ser un ::before -->
-                <div class="pastilla-text">
+                </div>
+
+                <div class="pastilla">
+                    <!-- svg podría ser un ::before -->
+
                     <span>Ofertas y descuentos</span>
                     <p>nuevos todos los días</p>
+
                 </div>
             </div>
+
         </div>
 
+
+
+
         <!--PRODUCTOS-->
-        <section>
+        <section class="light-bg" id="productos">
+
             <!-- svg divisor -->
+            <div class="custom-shape-divider-top-1674181137">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                    preserveAspectRatio="none">
+                    <path
+                        d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+                        class="shape-fill"></path>
+                </svg>
+            </div>
 
-            <!--NAVEGACIÓN SECUNDARIA-->
-            <ul class="navegacion">
-                <li>Todos</li>
-                <li>Celulares</li>
-                <li>Notebooks</li>
-                <li>Periféricos PC</li>
-            </ul>
+            <div class="layout-container">
 
-            <h1>Celulares</h1>
-            <h2>Productos</h2>
+                <!--NAVEGACIÓN SECUNDARIA-->
+                <ul class="navigation secundaria">
+                    <li><a href="" class="active">Todos</a></li>
+                    <li><a href="">Celulares</a></li>
+                    <li><a href="">Notebooks</a></li>
+                    <li><a href="">Periféricos PC</a></li>
+                </ul>
 
-            <!--CARDS-->
-            <div class="cards-container">
+                <span class="subtitle">Celulares</span>
+                <h1 class="h1">Productos</h1>
 
-                <div class="card">
-                    <img src="" alt="">
-                    <span>Categoría</span>
-                    <p>Iphone 9 Pro Max</p>
-                    <p>$90.000</p>
-                    <button>Más info</button>
-                    <button>Agregar al carrito</button>
+                <!--CARDS-->
+                <div class="cards-container">
+
+                    <div class="card">
+
+                        <div class="card-img">
+                            <img src="assets/imgs/iphone-12.jpg" alt="">
+                        </div>
+
+                        <div class="card-body">
+                            <span class="margin-card">Celulares</span>
+                            <h2 class="h2 margin-tiny">Apple iPhone 12 Negro</h2>
+                            <p class="margin-card">Más allá de la velocidad. Tecnología 5G. Toda la velocidad del chip
+                                A14 Bionic...</p>
+                            <span class="margin-card">$90.000</span>
+                            <div class="cta">
+                                <button class="button second_cta">Más info</button>
+                                <button class="button main_cta">Agregar al carrito</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="card">
+
+                        <div class="card-img">
+                            <img src="assets/imgs/iphone-13.jpg" alt="">
+                        </div>
+
+                        <div class="card-body">
+                            <span class="margin-card">Celulares</span>
+                            <h2 class="h2 margin-tiny">Apple iPhone 12 Negro</h2>
+                            <p class="margin-card">Más allá de la velocidad. Tecnología 5G. Toda la velocidad del chip
+                                A14 Bionic...</p>
+                            <span class="margin-card">$90.000</span>
+                            <div class="cta">
+                                <button class="button second_cta">Más info</button>
+                                <button class="button main_cta">Agregar al carrito</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div class="card-img">
+                            <img src="assets/imgs/iphone-13.jpg" alt="">
+                        </div>
+
+                        <div class="card-body">
+                            <span class="margin-card">Celulares</span>
+                            <h2 class="h2 margin-tiny">Apple iPhone 12 Negro</h2>
+                            <p class="margin-card">Más allá de la velocidad. Tecnología 5G. Toda la velocidad del chip
+                                A14 Bionic...</p>
+                            <span class="margin-card">$90.000</span>
+                            <div class="cta">
+                                <button class="button second_cta">Más info</button>
+                                <button class="button main_cta">Agregar al carrito</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div class="card-img">
+                            <img src="assets/imgs/iphone-13.jpg" alt="">
+                        </div>
+
+                        <div class="card-body">
+                            <span class="margin-card">Celulares</span>
+                            <h2 class="h2 margin-tiny">Apple iPhone 12 Negro</h2>
+                            <p class="margin-card">Más allá de la velocidad. Tecnología 5G. Toda la velocidad del chip
+                                A14 Bionic...</p>
+                            <span class="margin-card">$90.000</span>
+                            <div class="cta">
+                                <button class="button second_cta">Más info</button>
+                                <button class="button main_cta">Agregar al carrito</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-img">
+                            <img src="assets/imgs/iphone-13.jpg" alt="">
+                        </div>
+
+                        <div class="card-body">
+                            <span class="margin-card">Celulares</span>
+                            <h2 class="h2 margin-tiny">Apple iPhone 12 Negro</h2>
+                            <p class="margin-card">Más allá de la velocidad. Tecnología 5G. Toda la velocidad del chip
+                                A14 Bionic...</p>
+                            <span class="margin-card">$90.000</span>
+                            <div class="cta">
+                                <button class="button second_cta">Más info</button>
+                                <button class="button main_cta">Agregar al carrito</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-img">
+                            <img src="assets/imgs/iphone-13.jpg" alt="">
+                        </div>
+
+                        <div class="card-body">
+                            <span class="margin-card">Celulares</span>
+                            <h2 class="h2 margin-tiny">Apple iPhone 12 Negro</h2>
+                            <p class="margin-card">Más allá de la velocidad. Tecnología 5G. Toda la velocidad del chip
+                                A14 Bionic...</p>
+                            <span class="margin-card">$90.000</span>
+                            <div class="cta">
+                                <button class="button second_cta">Más info</button>
+                                <button class="button main_cta">Agregar al carrito</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
                 </div>
 
             </div>
