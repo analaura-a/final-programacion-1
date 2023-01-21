@@ -133,6 +133,8 @@ body {
 
 .site-logo {
     display: flex;
+    align-items: center;
+    gap: 3px;
 }
 
 .site-logo a {
@@ -143,6 +145,23 @@ body {
     font-size: var(--font-size-26px);
     font-weight: 700;
 }
+
+.icon-logo {
+    fill: var(--accent-color);
+    cursor: pointer;
+    transition: color ease 250ms, fill ease 250ms;
+}
+
+.site-logo:hover a {
+    color: var(--dark-color);
+}
+
+.site-logo:hover .icon-logo {
+    fill: var(--dark-color);
+}
+
+
+
 
 .navigation {
     display: flex;
@@ -167,7 +186,6 @@ body {
 .navigation a:active {
     color: var(--dark-color);
 }
-
 
 .navigation a {
     position: relative;
@@ -201,6 +219,39 @@ body {
     width: 100%;
     height: 0.125rem;
 }
+
+
+.header-cart {
+    position: relative;
+}
+
+.header-cart-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    line-height: 1;
+}
+
+.header-cart-count::after {
+    display: inline-block;
+    text-align: center;
+    padding: 0.3125rem 0 0 0;
+
+    content: attr(data-header-cart-count);
+    font-family: var(--font-family);
+    font-size: var(--font-size-14px);
+    
+    min-height: 22px;
+    min-width: 22px;
+    color: var(--text-color-light);
+   
+    background-color: var(--dark-color);
+    border-radius: 50%;
+
+}
+
+
 
 
 
