@@ -52,29 +52,25 @@ h6 {
     --text-color-light: #fafafa;
     --text-color-gray: #D4D4D4;
     --bg-gradient-color: linear-gradient(180deg, #E5E9EA 6.19%, #1D1E1E 403.95%);
+    --bg-modal-color: #1d1e1e7c;
 
     --font-family: 'visuelt_proregular';
     --font-family-medium: 'visuelt_promedium';
     --font-family-bold: 'visuelt_probold';
     --font-size-10px: 0.625rem;
-    /*Categoría de card*/
     --font-size-12px: 0.75rem;
-    /*Texto botones card, descripcion card*/
     --font-size-14px: 0.875rem;
-    /*Texto pastillas de contenido*/
     --font-size-16px: 1rem;
-    /*Titulos pastilla de contenido, palabras en la navegación, subtitulo de productos*/
     --font-size-20px: 1.25rem;
-    /*Titulo de card y precio*/
     --font-size-26px: 1.625rem;
-    /*Texto logo*/
     --font-size-44px: 2.75rem;
-    /*H1*/
 
     --letter-spacing-nav: 0.04rem;
     --letter-spacing-subtitle: 0.08rem;
     --margin-card: 0.6rem;
     --margin-tiny: 0.25rem;
+    --margin-10px: 0.625rem;
+    --margin-30px: 1.875rem;
 
     --button-shadow: #313131 0px 2px 20px;
     --shadow-color: 192deg 4% 72%;
@@ -98,6 +94,23 @@ h6 {
         0px 3.6px 5.2px -0.1px hsl(var(--shadow-color-button) / 0.1),
         0.1px 7.3px 10.5px -0.3px hsl(var(--shadow-color-button) / 0.18),
         0.1px 15px 21.5px -0.4px hsl(var(--shadow-color-button) / 0.25);
+
+    --shadow-elevation-button-modal:
+        0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.36),
+        0.8px 1.6px 2px -0.8px hsl(var(--shadow-color) / 0.36),
+        2.1px 4.1px 5.2px -1.7px hsl(var(--shadow-color) / 0.36),
+        5px 10px 12.6px -2.5px hsl(var(--shadow-color) / 0.36);
+
+    --shadow-elevation-button-modal-hover:
+        0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
+        1.5px 2.9px 3.7px -0.4px hsl(var(--shadow-color) / 0.34),
+        2.7px 5.4px 6.8px -0.7px hsl(var(--shadow-color) / 0.34),
+        4.5px 8.9px 11.2px -1.1px hsl(var(--shadow-color) / 0.34),
+        7.1px 14.3px 18px -1.4px hsl(var(--shadow-color) / 0.34),
+        11.2px 22.3px 28.1px -1.8px hsl(var(--shadow-color) / 0.34),
+        17px 33.9px 42.7px -2.1px hsl(var(--shadow-color) / 0.34),
+        25px 50px 62.9px -2.5px hsl(var(--shadow-color) / 0.34);
+
 }
 
 
@@ -115,7 +128,17 @@ body {
     margin: 0 auto;
 }
 
+.light-bg {
+    background: var(--light-color);
+}
 
+.margin-modal-subtitle {
+    margin-bottom: var(--margin-10px);
+}
+
+.margin-modal {
+    margin-bottom: var(--margin-30px);
+}
 
 /*Componente NAVBAR*/
 .navbar {
@@ -332,11 +355,31 @@ body {
 
 
 
-/*Componente PRODUCTOS*/
-.light-bg {
-    background: var(--light-color);
+/*SEPARADOR*/
+.custom-shape-divider-top {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
 }
 
+.custom-shape-divider-top svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 38px;
+}
+
+.custom-shape-divider-top .shape-fill {
+    fill: var(--dark-color);
+}
+
+
+
+/*Componente PRODUCTOS*/
 .secundaria {
     justify-content: center;
     gap: 2.5rem;
@@ -352,6 +395,9 @@ body {
     letter-spacing: var(--letter-spacing-subtitle);
 
     display: inline-block;
+}
+
+.margin-subtitle {
     margin-top: 90px;
 }
 
@@ -359,6 +405,10 @@ body {
     font-family: var(--font-family-bold);
     font-size: var(--font-size-44px);
     color: var(--dark-color);
+    line-height: 1;
+}
+
+.margin-h1 {
     margin-bottom: 40px;
 }
 
@@ -378,8 +428,13 @@ body {
     overflow: hidden;
 
     box-shadow: var(--shadow-elevation-medium);
+    transition: transform ease 230ms;
 }
 
+.card:hover {
+    transform: translate(0px, -5px);
+    transition: transform ease-out 230ms;
+}
 
 .card-body {
     padding: 1.2rem;
@@ -468,23 +523,164 @@ body {
     padding-bottom: 9em;
 }
 
-.custom-shape-divider-top {
-    position: absolute;
-    top: -1px;
+
+
+/*Componente VENTANA MODAL (Producto)*/
+.bg-modal {
+    display: grid;
+    place-items: center;
+
+    position: fixed;
+    z-index: 1;
     left: 0;
+    top: 0;
+
     width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    transform: rotate(180deg);
+    height: 100%;
+    overflow: auto;
+
+    background-color: var(--bg-modal-color);
 }
 
-.custom-shape-divider-top svg {
+.modal {
     position: relative;
-    display: block;
-    width: calc(100% + 1.3px);
-    height: 38px;
+    width: 85%;
+    max-width: 1300px;
+    padding: 100px 60px;
+    border-radius: 9px;
+
+    background: var(--light-color);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
 }
 
-.custom-shape-divider-top .shape-fill {
-    fill: var(--dark-color);
+@media screen and (min-width: 1500px) {
+    .modal {
+        padding: 150px 90px;
+    }
+}
+
+.gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.gallery-img-container {
+    width: 400px;
+}
+
+.gallery-img {
+    width: 100%;
+    height: auto;
+
+    object-fit: cover;
+    object-position: center;
+    border-radius: 9px;
+}
+
+.gallery-thumbnails {
+    display: flex;
+    gap: 14px;
+}
+
+.gallery-thumbnails>img {
+    width: 80px;
+    height: auto;
+    border-radius: 4px;
+    background-color: #fafafa;
+
+    cursor: pointer;
+}
+
+.selected {
+    border: 2px solid var(--accent-color);
+    opacity: 0.8;
+}
+
+
+
+.content {
+    max-width: 500px;
+    width: 100%;
+}
+
+.description {
+    font-family: var(--font-family);
+    font-size: var(--font-size-14px);
+    color: var(--dark-color);
+    max-width: 55ch;
+}
+
+.price {
+    color: var(--dark-color);
+    font-family: var(--font-family-bold);
+    font-size: var(--font-size-26px);
+}
+
+
+
+.product-quantity {
+    display: flex;
+    gap: 20px;
+}
+
+.input-price {
+    display: flex;
+    align-items: center;
+
+}
+
+.input-minus,
+.input-plus,
+.close-modal {
+    color: var(--accent-color);
+    font-family: var(--font-family-bold);
+    font-size: var(--font-size-26px);
+    padding: 4px 15px 0 15px;
+    border-radius: 50%;
+
+    cursor: pointer;
+    user-select: none;
+    transition: background ease 230ms;
+}
+
+.input-minus:hover,
+.input-plus:hover,
+.close-modal:hover {
+    background: var(--text-color-gray);
+}
+
+.input-number {
+    font-family: var(--font-family-medium);
+    font-size: var(--font-size-20px);
+    text-align: center;
+
+    background-color: var(--light-color);
+    border: none;
+    outline: none;
+    width: 60px;
+}
+
+.product-quantity>button {
+    box-shadow: none;
+}
+
+.product-quantity .button {
+    box-shadow: var(--shadow-elevation-button-modal);
+}
+
+.product-quantity .button:hover {
+    box-shadow: var(--shadow-elevation-button-modal-hover);
+}
+
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
