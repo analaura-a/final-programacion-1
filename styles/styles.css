@@ -140,6 +140,11 @@ body {
     margin-bottom: var(--margin-30px);
 }
 
+/* .modal-open{
+    overflow: hidden;
+} */
+
+
 /*Componente NAVBAR*/
 .navbar {
     background: var(--light-color);
@@ -439,6 +444,7 @@ body {
 
 .card-body {
     padding: 1.2rem;
+    cursor: default;
 }
 
 .card-body span:first-of-type {
@@ -670,15 +676,15 @@ body {
     width: 60px;
 }
 
-.product-quantity>button {
+/* .product-quantity>button {
     box-shadow: none;
-}
+} */
 
-.product-quantity .button {
+.cta_light-bg {
     box-shadow: var(--shadow-elevation-button-modal);
 }
 
-.product-quantity .button:hover {
+.cta_light-bg:hover {
     box-shadow: var(--shadow-elevation-button-modal-hover);
 }
 
@@ -692,3 +698,90 @@ body {
 
 
 /*Componente VENTANA MODAL (Carrito de compras)*/
+.bg-modal-carrito {
+    display: flex;
+    justify-content: end;
+
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+
+    background-color: var(--bg-modal-color);
+}
+
+.carrito {
+    position: relative;
+    width: 30%;
+    max-width: 500px;
+
+    padding: 90px 60px 40px 60px;
+    border-radius: 9px 0 0 9px;
+
+    background: var(--light-color);
+
+
+
+    color: black;
+}
+
+.subtitle-carrito {
+    font-family: var(--font-family-medium);
+    font-size: var(--font-size-14px);
+    color: gray;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-nav);
+    display: inline-block;
+}
+
+.products-container {
+    outline: red 1px solid;
+}
+
+.product-added {
+    outline: blue 1px solid;
+}
+
+
+.products-container {
+    height: 450px;
+    overflow-y: scroll;
+}
+
+.img-carrito {
+    width: 80px;
+    height: auto;
+}
+
+
+
+
+
+
+
+
+/*Componente SCROLLBAR*/
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--text-color-gray);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(160, 160, 160);
+    border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(139, 139, 139);
+}
