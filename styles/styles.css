@@ -398,7 +398,7 @@ body {
 }
 
 .margin-subtitle {
-    margin-top: 90px;
+    margin-top: 6.2rem;
 }
 
 .h1 {
@@ -409,7 +409,8 @@ body {
 }
 
 .margin-h1 {
-    margin-bottom: 40px;
+    margin-bottom: 3.125rem;
+    margin-top: 0.75rem;
 }
 
 .cards-container {
@@ -527,7 +528,7 @@ body {
 
 /*Componente VENTANA MODAL (Producto)*/
 .bg-modal {
-    display: grid;
+    display: none;
     place-items: center;
 
     position: fixed;
@@ -593,13 +594,16 @@ body {
     height: auto;
     border-radius: 4px;
     background-color: #fafafa;
-
     cursor: pointer;
+    transition: box-shadow ease 230ms;
+}
+
+.gallery-thumbnails>img:hover {
+    box-shadow: var(--shadow-elevation-button-modal);
 }
 
 .selected {
     border: 2px solid var(--accent-color);
-    opacity: 0.8;
 }
 
 
@@ -684,3 +688,7 @@ body {
     top: 20px;
     right: 20px;
 }
+
+
+
+/*Componente VENTANA MODAL (Carrito de compras)*/
