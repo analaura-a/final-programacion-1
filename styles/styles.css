@@ -536,6 +536,7 @@ body {
 /*Componente VENTANA MODAL (Producto)*/
 .bg-modal {
     display: none;
+    /* display: grid; */
     place-items: center;
 
     position: fixed;
@@ -692,7 +693,8 @@ body {
 
 /*Componente VENTANA MODAL (Carrito de compras)*/
 .bg-modal-carrito {
-    display: flex;
+    display: none;
+    /*display: flex;*/
     justify-content: end;
 
     position: fixed;
