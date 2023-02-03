@@ -145,6 +145,7 @@ body {
 } */
 
 
+
 /*Componente NAVBAR*/
 .navbar {
     background: var(--light-color);
@@ -612,8 +613,6 @@ body {
     border: 2px solid var(--accent-color);
 }
 
-
-
 .content {
     max-width: 500px;
     width: 100%;
@@ -631,8 +630,6 @@ body {
     font-family: var(--font-family-bold);
     font-size: var(--font-size-26px);
 }
-
-
 
 .product-quantity {
     display: flex;
@@ -676,10 +673,6 @@ body {
     width: 60px;
 }
 
-/* .product-quantity>button {
-    box-shadow: none;
-} */
-
 .cta_light-bg {
     box-shadow: var(--shadow-elevation-button-modal);
 }
@@ -715,18 +708,35 @@ body {
 }
 
 .carrito {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
     position: relative;
     width: 30%;
     max-width: 500px;
-
     padding: 90px 60px 40px 60px;
     border-radius: 9px 0 0 9px;
-
     background: var(--light-color);
+}
 
+.close-modal-carrito {
+    position: absolute;
+    top: 20px;
+    right: 20px;
 
+    color: var(--accent-color);
+    font-family: var(--font-family-bold);
+    font-size: var(--font-size-26px);
+    padding: 4px 15px 0 15px;
+    border-radius: 50%;
 
-    color: black;
+    cursor: pointer;
+    user-select: none;
+    transition: background ease 230ms;
+}
+
+.close-modal-carrito:hover {
+    background: var(--text-color-gray);
 }
 
 .subtitle-carrito {
@@ -739,49 +749,149 @@ body {
 }
 
 .products-container {
-    outline: red 1px solid;
-}
-
-.product-added {
-    outline: blue 1px solid;
-}
-
-
-.products-container {
-    height: 450px;
+    height: 400px;
     overflow-y: scroll;
 }
 
-.img-carrito {
-    width: 80px;
-    height: auto;
+.product-added {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 14px 14px 14px 0;
+
+    border-top: 1px solid var(--text-color-gray);
+    border-bottom: 1px solid var(--text-color-gray);
 }
 
+.product-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
+.img-carrito {
+    width: 70px;
+    height: auto;
+    border-radius: 3px;
+}
 
+.h2 {
+    font-family: var(--font-family-bold);
+    font-size: var(--font-size-16px);
+    line-height: 1;
+    color: var(--dark-color);
+    font-weight: normal;
 
+    margin-bottom: 5px;
+}
 
+.product-info>div>p {
+    font-family: var(--font-family);
+    font-size: var(--font-size-16px);
+    line-height: 1;
+    color: var(--dark-color);
+}
+
+.product-action {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 46px;
+}
+
+.delete-item {
+    cursor: pointer;
+}
+
+.delete-item>svg {
+    fill: var(--accent-color);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    transition: background ease 230ms;
+}
+
+.delete-item:hover svg {
+    background: var(--text-color-gray);
+}
+
+.cantidad {
+    font-family: var(--font-family);
+    font-size: var(--font-size-12px);
+    line-height: 1;
+    color: gray;
+    text-align: end;
+}
+
+.subtotal {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-family-bold);
+    font-size: var(--font-size-20px);
+    line-height: 1;
+    color: var(--dark-color);
+
+    margin-bottom: 10px;
+
+}
+
+.carrito .main_cta {
+    display: block;
+    padding: 0.5rem 4.5rem 0.5rem 4.5rem;
+    margin: 20px auto;
+    border-radius: 2.375rem;
+
+    background: var(--accent-color);
+    color: var(--text-color-light);
+    background-image: none;
+}
+
+.empty-button {
+    display: block;
+    background: url(../assets/icons/delete.svg);
+    background-repeat: no-repeat;
+    background-position: 1.65rem center;
+
+    border: none;
+    font-family: var(--font-family-bold);
+    font-size: var(--font-size-12px);
+    text-transform: uppercase;
+    line-height: 1;
+    color: gray;
+
+    cursor: pointer;
+    margin: 0 auto;
+    padding: 0.5rem 2.1rem 0.4rem 3.1rem;
+    position: relative;
+}
+
+@media screen and (min-width: 1500px) {
+    .products-container {
+        height: 550px;
+    }
+
+    .product-added {
+        padding: 18px 18px 18px 0;
+    }
+}
 
 
 
 /*Componente SCROLLBAR*/
-/* width */
 ::-webkit-scrollbar {
     width: 6px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
     background: var(--text-color-gray);
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
     background: rgb(160, 160, 160);
     border-radius: 3px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(139, 139, 139);
 }
