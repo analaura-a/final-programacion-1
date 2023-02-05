@@ -116,9 +116,12 @@ let productos = [{
 ]
 
 
-
+/*Elemento HTML en el que se van a mostrar los productos*/
 let contenedorProductos = document.getElementById('products');
+let contenedorMain = document.getElementById('main');
 
+
+/*Función para mostrar los productos*/
 const cargarProductos = function () {
 
     productos.forEach(producto => {
@@ -157,10 +160,12 @@ const cargarProductos = function () {
 
         let buttonMasInfo = document.createElement("button");
         buttonMasInfo.classList.add("button", "second_cta");
+        buttonMasInfo.setAttribute('id', `info${producto.id}`);
         buttonMasInfo.textContent = 'Más info';
 
         let buttonAgregarCarrito = document.createElement("button");
         buttonAgregarCarrito.classList.add("button", "main_cta");
+        buttonAgregarCarrito.setAttribute('id', `agregar${producto.id}`);
         buttonAgregarCarrito.textContent = 'Agregar al carrito';
 
         contenedorProductos.appendChild(divCard);
@@ -183,3 +188,187 @@ const cargarProductos = function () {
 }
 
 cargarProductos();
+
+
+
+const cargarVentanaModalProducto = function () {
+
+    productos.forEach(producto => {
+
+        let divBgModal = document.createElement("div");
+        divBgModal.classList.add("bg-modal");
+        divBgModal.setAttribute('id', `modal${producto.id}`);
+
+        let sectionModal = document.createElement("section");
+        sectionModal.classList.add("modal");
+
+        let articleGallery = document.createElement("article");
+        articleGallery.classList.add("gallery");
+
+        let divGalleryImg = document.createElement("div");
+        divGalleryImg.classList.add("gallery-img-container");
+
+        let galleryImg = document.createElement("img");
+        galleryImg.classList.add("gallery-img");
+        galleryImg.setAttribute("src", `assets/imgs/${producto.imagen1}.jpg`);
+        galleryImg.setAttribute("alt", producto.nombre);
+
+        let divGalleryThumbnails = document.createElement("div");
+        divGalleryThumbnails.classList.add("gallery-thumbnails");
+
+        let galleryThumbnail1 = document.createElement("img");
+        galleryThumbnail1.classList.add("selected");
+        galleryThumbnail1.setAttribute("src", `assets/imgs/${producto.imagen1}.jpg`);
+        galleryThumbnail1.setAttribute("alt", producto.nombre);
+        galleryThumbnail1.setAttribute('id', `${producto.id}-1`);
+
+        let galleryThumbnail2 = document.createElement("img");
+        galleryThumbnail2.setAttribute("src", `assets/imgs/${producto.imagen2}.jpg`);
+        galleryThumbnail2.setAttribute("alt", producto.nombre);
+        galleryThumbnail2.setAttribute('id', `${producto.id}-2`);
+
+        let galleryThumbnail3 = document.createElement("img");
+        galleryThumbnail3.setAttribute("src", `assets/imgs/${producto.imagen3}.jpg`);
+        galleryThumbnail3.setAttribute("alt", producto.nombre);
+        galleryThumbnail3.setAttribute('id', `${producto.id}-3`);
+
+        let galleryThumbnail4 = document.createElement("img");
+        galleryThumbnail4.setAttribute("src", `assets/imgs/${producto.imagen4}.jpg`);
+        galleryThumbnail4.setAttribute("alt", producto.nombre);
+        galleryThumbnail4.setAttribute('id', `${producto.id}-4`);
+
+        let articleContent = document.createElement("article");
+        articleContent.classList.add("content");
+
+        let divDetails = document.createElement("div");
+        divDetails.classList.add("details");
+
+        let spanCategoriaModal = document.createElement("span");
+        spanCategoriaModal.classList.add("subtitle", "margin-modal-subtitle");
+        spanCategoriaModal.textContent = producto.categoría;
+
+        let tituloNombreModal = document.createElement("h1");
+        tituloNombreModal.classList.add("h1", "margin-modal");
+        tituloNombreModal.textContent = producto.nombre;
+
+        let pDescripcionModal = document.createElement("p");
+        pDescripcionModal.classList.add("description", "margin-modal");
+        pDescripcionModal.textContent = producto.descripcion;
+
+        let pPrecioModal = document.createElement("p");
+        pPrecioModal.classList.add("price", "margin-modal");
+        pPrecioModal.textContent = `$${producto.precio.toLocaleString('de-DE')}`;
+
+        let divProductQuantity = document.createElement("div");
+        divProductQuantity.classList.add("product-quantity");
+
+        let divInputPrice = document.createElement("div");
+        divInputPrice.classList.add("input-price");
+
+        let spanInputMinus = document.createElement("span");
+        spanInputMinus.classList.add("input-minus");
+        spanInputMinus.textContent = "-";
+
+        let inputNumber = document.createElement("input");
+        inputNumber.classList.add("input-number");
+        inputNumber.setAttribute("type", "text");
+        inputNumber.setAttribute("value", "0");
+
+        let spanInputPlus = document.createElement("span");
+        spanInputPlus.classList.add("input-plus");
+        spanInputPlus.textContent = "+";
+
+        let buttonAgregarCarritoModal = document.createElement("button");
+        buttonAgregarCarritoModal.classList.add("button", "main_cta", "cta_light-bg");
+        buttonAgregarCarritoModal.setAttribute('id', `agregar${producto.id}modal`);
+        buttonAgregarCarritoModal.textContent = 'Agregar al carrito';
+
+        let spanCloseModal = document.createElement("span");
+        spanCloseModal.classList.add("close-modal");
+        spanCloseModal.textContent = "x";
+
+        contenedorMain.appendChild(divBgModal);
+
+        divBgModal.appendChild(sectionModal);
+
+        sectionModal.appendChild(articleGallery);
+        sectionModal.appendChild(articleContent);
+        sectionModal.appendChild(spanCloseModal);
+
+        articleGallery.appendChild(divGalleryImg);
+        articleGallery.appendChild(divGalleryThumbnails);
+
+        divGalleryImg.appendChild(galleryImg);
+
+        divGalleryThumbnails.appendChild(galleryThumbnail1);
+        divGalleryThumbnails.appendChild(galleryThumbnail2);
+        divGalleryThumbnails.appendChild(galleryThumbnail3);
+        divGalleryThumbnails.appendChild(galleryThumbnail4);
+
+        articleContent.appendChild(divDetails);
+        articleContent.appendChild(divProductQuantity);
+
+        divDetails.appendChild(spanCategoriaModal);
+        divDetails.appendChild(tituloNombreModal);
+        divDetails.appendChild(pDescripcionModal);
+        divDetails.appendChild(pPrecioModal);
+
+        divProductQuantity.appendChild(divInputPrice);
+        divProductQuantity.appendChild(buttonAgregarCarritoModal);
+
+        divInputPrice.appendChild(spanInputMinus);
+        divInputPrice.appendChild(inputNumber);
+        divInputPrice.appendChild(spanInputPlus);
+
+
+        let buttonMasInfoModal = document.getElementById(`info${producto.id}`);
+        let modalConID = document.getElementById(`modal${producto.id}`);
+
+
+        buttonMasInfoModal.addEventListener("click", function () {
+            modalConID.style.display = "grid";
+        });
+
+        spanCloseModal.addEventListener("click", function () {
+            modalConID.style.display = "none";
+        });
+
+        window.addEventListener("click", function (event) {
+            if (event.target == modalConID) {
+                modalConID.style.display = "none";
+            }
+        });
+
+
+    })
+
+
+}
+
+cargarVentanaModalProducto();
+
+
+
+
+
+
+
+
+// let botonesMasInfo = document.querySelectorAll(".second_cta");
+// const mostrarVentanaModalProducto = function () {
+
+//     productos.forEach(producto => {
+//         let modalConID = document.getElementById(`modal${producto.id}`);
+//     })
+
+//     botonesMasInfo.forEach(boton => {
+//         boton.addEventListener("click", () => {
+
+//             console.log("funciona");
+//             modalConID.style.display = "grid";
+
+//         })
+
+//     })
+
+// }
