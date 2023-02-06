@@ -573,6 +573,21 @@ header {
     justify-content: space-between;
     align-items: center;
 
+    -webkit-animation-name: fadein;
+    -webkit-animation-duration: 0.5s;
+    animation-name: fadein;
+    animation-duration: 0.5s;
+
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @media screen and (min-width: 1500px) {
