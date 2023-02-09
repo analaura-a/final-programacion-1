@@ -121,7 +121,7 @@ let contenedorProductos = document.getElementById('products');
 let contenedorMain = document.getElementById('main');
 
 
-/*Función para mostrar los productos*/
+/*Función para mostrar el catálogo de productos*/
 const cargarProductos = function () {
 
     productos.forEach(producto => {
@@ -449,19 +449,26 @@ const cargarVentanaModalCarrito = function () {
     divSubtotal.appendChild(pTotal);
     divSubtotal.appendChild(pTotalNúmero);
 
-
-
     headerCarrito.addEventListener("click", function () {
         divBgModalCarrito.style.display = "flex";
+        setTimeout(() => {
+            sectionCarrito.style.right = "0%";
+        }, 10);
     });
 
     spanCloseModalCarrito.addEventListener("click", function () {
-        divBgModalCarrito.style.display = "none";
+        sectionCarrito.style.right = "-100%";
+        setTimeout(() => {
+            divBgModalCarrito.style.display = "none";
+        }, 150);
     });
 
     window.addEventListener("click", function (event) {
         if (event.target == divBgModalCarrito) {
-            divBgModalCarrito.style.display = "none";
+            sectionCarrito.style.right = "-100%";
+            setTimeout(() => {
+                divBgModalCarrito.style.display = "none";
+            }, 150);
         }
     });
 }
