@@ -1,4 +1,4 @@
-/* FINAL PROGRAMACIÓN 1.
+/*FINAL PROGRAMACIÓN 1.
 ALUMNAS: Ana Laura Almirón y Brisa Marca*/
 
 'use strict';
@@ -116,7 +116,7 @@ let productos = [{
 ]
 
 
-/*Elementos HTML en el que se van a mostrar los productos dinámicamente*/
+/*Elementos HTML en los que se van a mostrar los productos dinámicamente*/
 let contenedorProductos = document.getElementById('products');
 let contenedorMain = document.getElementById('main');
 
@@ -191,7 +191,7 @@ cargarProductos();
 
 
 
-/*Función para cargar las ventanas modales de cada producto*/
+/*Función para cargar dinámicamente las ventanas modales de cada producto*/
 const cargarVentanaModalProducto = function () {
 
     productos.forEach(producto => {
@@ -351,7 +351,7 @@ cargarVentanaModalProducto();
 
 
 
-/*Función el correcto funcionamiento de las ventanas modales de cada producto*/
+/*Función para el correcto funcionamiento de las ventanas modales de cada producto*/
 const mostrarVentanaModalProducto = function () {
 
     productos.forEach(producto => {
@@ -378,3 +378,92 @@ const mostrarVentanaModalProducto = function () {
 }
 
 mostrarVentanaModalProducto();
+
+
+
+/*Carrito de compras*/
+let headerCarrito = document.getElementById('header-cart');
+
+
+/*Función para crear dinámicamente el carrito de compras*/
+const cargarVentanaModalCarrito = function () {
+
+    let divBgModalCarrito = document.createElement("div");
+    divBgModalCarrito.classList.add("bg-modal-carrito");
+
+    let sectionCarrito = document.createElement("section");
+    sectionCarrito.classList.add("carrito");
+
+    let spanCloseModalCarrito = document.createElement("span");
+    spanCloseModalCarrito.classList.add("close-modal-carrito");
+    spanCloseModalCarrito.textContent = "x";
+
+    let divTitulo = document.createElement("div");
+
+    let h1Titulo = document.createElement("h1");
+    h1Titulo.classList.add("h1");
+    h1Titulo.textContent = "Mi carrito";
+
+    let spanSubtitulo = document.createElement("span");
+    spanSubtitulo.classList.add("subtitle-carrito");
+    spanSubtitulo.textContent = "0 items";
+
+    let divProductsContainer = document.createElement("div");
+    divProductsContainer.classList.add("products-container");
+
+    let divAcciones = document.createElement("div");
+
+    let divSubtotal = document.createElement("div");
+    divSubtotal.classList.add("subtotal");
+
+    let pTotal = document.createElement("p");
+    pTotal.textContent = "Total";
+
+    let pTotalNúmero = document.createElement("p");
+    pTotalNúmero.textContent = "$0";
+
+    let buttonCheckout = document.createElement("button");
+    buttonCheckout.classList.add("button", "main_cta", "cta_light-bg");
+    buttonCheckout.textContent = "Checkout"
+
+    let buttonVaciarCarrito = document.createElement("button");
+    buttonVaciarCarrito.classList.add("empty-button");
+    buttonVaciarCarrito.textContent = "Vaciar carrito";
+
+    contenedorMain.appendChild(divBgModalCarrito);
+
+    divBgModalCarrito.appendChild(sectionCarrito);
+
+    sectionCarrito.appendChild(spanCloseModalCarrito);
+    sectionCarrito.appendChild(divTitulo);
+    sectionCarrito.appendChild(divProductsContainer);
+    sectionCarrito.appendChild(divAcciones);
+
+    divTitulo.appendChild(h1Titulo);
+    divTitulo.appendChild(spanSubtitulo);
+
+    divAcciones.appendChild(divSubtotal);
+    divAcciones.appendChild(buttonCheckout);
+    divAcciones.appendChild(buttonVaciarCarrito);
+
+    divSubtotal.appendChild(pTotal);
+    divSubtotal.appendChild(pTotalNúmero);
+
+
+
+    headerCarrito.addEventListener("click", function () {
+        divBgModalCarrito.style.display = "flex";
+    });
+
+    spanCloseModalCarrito.addEventListener("click", function () {
+        divBgModalCarrito.style.display = "none";
+    });
+
+    window.addEventListener("click", function (event) {
+        if (event.target == divBgModalCarrito) {
+            divBgModalCarrito.style.display = "none";
+        }
+    });
+}
+
+cargarVentanaModalCarrito();
