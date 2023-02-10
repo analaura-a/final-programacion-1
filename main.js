@@ -186,7 +186,7 @@ const cargarProductos = function (productosElegidos) {
         divBotones.appendChild(buttonMasInfo);
         divBotones.appendChild(buttonAgregarCarrito);
 
-    })
+    });
 
 }
 
@@ -194,9 +194,9 @@ cargarProductos(productos);
 
 
 /*Función para crear dinámicamente las ventanas modales de cada producto*/
-const cargarVentanaModalProducto = function () {
+const cargarVentanaModalProducto = function (productosElegidos) {
 
-    productos.forEach(producto => {
+    productosElegidos.forEach(producto => {
 
         let divBgModal = document.createElement("div");
         divBgModal.classList.add("bg-modal");
@@ -324,42 +324,8 @@ const cargarVentanaModalProducto = function () {
         divInputPrice.appendChild(inputNumber);
         divInputPrice.appendChild(spanInputPlus);
 
-
-        /*let buttonMasInfoModal = document.getElementById(`info${producto.id}`);
-        let modalConID = document.getElementById(`modal${producto.id}`);
-
-
-        buttonMasInfoModal.addEventListener("click", function () {
-            modalConID.style.display = "grid";
-        });
-
-        spanCloseModal.addEventListener("click", function () {
-            modalConID.style.display = "none";
-        });
-
-        window.addEventListener("click", function (event) {
-            if (event.target == modalConID) {
-                modalConID.style.display = "none";
-            }
-        });*/
-
-
-    })
-
-
-}
-
-cargarVentanaModalProducto();
-
-
-/*Función para el correcto funcionamiento de las ventanas modales de cada producto*/
-const mostrarVentanaModalProducto = function () {
-
-    productos.forEach(producto => {
-
         let buttonMasInfoModal = document.getElementById(`info${producto.id}`);
         let modalConID = document.getElementById(`modal${producto.id}`);
-        let spanCloseModal = document.getElementById(`cerrar${producto.id}`);
 
         buttonMasInfoModal.addEventListener("click", function () {
             modalConID.style.display = "grid";
@@ -375,11 +341,13 @@ const mostrarVentanaModalProducto = function () {
             }
         });
 
+
     })
+
+
 }
 
-mostrarVentanaModalProducto();
-
+cargarVentanaModalProducto(productos);
 
 
 /*Función para cambiar de categoría en el catálogo de productos (y rotar los banners flotantes)*/
@@ -429,10 +397,12 @@ botonesCategoria.forEach(boton => {
 
             let productosBoton = productos.filter(producto => producto.categoria === e.currentTarget.id);
             cargarProductos(productosBoton);
+            cargarVentanaModalProducto(productosBoton);
             rotacionBanner();
         } else {
             tituloCategoria.textContent = "Destacados";
             cargarProductos(productos);
+            cargarVentanaModalProducto(productos);
             rotacionBanner();
         }
 
