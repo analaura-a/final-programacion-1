@@ -113,7 +113,7 @@ let productos = [{
         imagen4: 'dell-g15-4',
     },
 
-]
+];
 
 
 /*Elementos HTML en los que se van a mostrar los productos dinámicamente*/
@@ -382,45 +382,69 @@ mostrarVentanaModalProducto();
 
 
 
-/*Función para cambiar de categoría en el catálogo de productos*/
+/*Función para cambiar de categoría en el catálogo de productos (y rotar los banners flotantes)*/
 let botonesCategoria = document.querySelectorAll('.category-button');
 let tituloCategoria = document.getElementById('titulo-categoria');
+let bannerFlotante = document.getElementById('img-banner');
+let banners = ['assets/imgs/banner-1.jpg', 'assets/imgs/banner-2.jpg', 'assets/imgs/banner-3.jpg'];
+let timerID = null;
 
 botonesCategoria.forEach(boton => {
 
     boton.addEventListener("click", (e) => {
 
-        //Cambiamos las clases para mostrar visualmente la elección del usuario
+        //Cambiamos la imagen del banner cada vez que se cambia de categoría
+        const rotacionBanner = function () {
+
+            bannerFlotante.style.display = "block";
+
+            //Selección de uno de los banners al azar
+            const eleccionBanner = Math.floor(Math.random() * 3);
+            const eleccionRandom = banners[eleccionBanner];
+            bannerFlotante.setAttribute("src", eleccionRandom);
+
+            //Desaparición del banner después de 10 segundos
+            let eliminarBanner = function () {
+                clearTimeout(timerID);
+
+                timerID = setTimeout(() => {
+                    bannerFlotante.style.display = "none";
+                }, 10000);
+            }
+            eliminarBanner();
+
+        }
+
+        //Cambiamos las clases para mostrar visualmente la elección de categoría del usuario
         botonesCategoria.forEach(boton => {
-            boton.classList.remove("active")
+            boton.classList.remove("active");
         });
         e.currentTarget.classList.add("active");
 
         //Utilizamos el método filter para crear un array que contenga los productos de la categoría seleccionada y lo mostramos en el HTML usándolo como parámetro en nuestra función cargarProductos
         if (e.currentTarget.id != "Todos") {
-            //También usamos el método find para obtener el nombre de la categoría y mostrarlo visualmente
+            //También usamos el método find para obtener el nombre de la categoría seleccionada y poder mostrarlo visualmente
             let nombreCategoriaElegida = productos.find(producto => producto.categoria === e.currentTarget.id);
             tituloCategoria.textContent = nombreCategoriaElegida.categoria;
 
             let productosBoton = productos.filter(producto => producto.categoria === e.currentTarget.id);
             cargarProductos(productosBoton);
+            rotacionBanner();
         } else {
             tituloCategoria.textContent = "Destacados";
             cargarProductos(productos);
+            rotacionBanner();
         }
-
 
     });
 
 })
 
 
-
-
 /*Carrito de compras*/
 
 
-/*Función para crear dinámicamente el carrito de compras*/
+/*Función para crear dinámicamente la ventana modal del carrito de compras*/
 const cargarVentanaModalCarrito = function () {
 
     let divBgModalCarrito = document.createElement("div");
