@@ -10,7 +10,7 @@ let productos = [{
         descripcion: 'Sencillo de configurar y usar: como tiene cable, puedes conectarlo a un puerto USB y usarlo inmediatamente. Diseñado para uso ambidiestro: se sentirá cómodo, incluso tras períodos de uso prolongado. Seguimiento óptico de alta definición: disfrutará de un control preciso y uniforme del cursor, y de una selección de texto fácil, gracias al seguimiento óptico de alta definición de 1000dpi. El seguimiento óptico preciso nunca falla, ofrece un desplazamiento fluido, con o sin alfombrilla.',
         descripcionCorta: 'Disfrutará de un control preciso y uniforme del cursor, y de una selección...',
         precio: 1000,
-        categoría: 'Periféricos PC',
+        categoria: 'Periféricos PC',
         imagen1: 'mouse-logitech',
         imagen2: 'mouse-logitech-2',
         imagen3: 'mouse-logitech-3',
@@ -22,7 +22,7 @@ let productos = [{
         descripcion: 'Ya sea diestro o zurdo, se sentirá cómodo durante horas con este diseño de tamaño estándar para uso ambidiestro. El seguimiento óptico preciso nunca falla, ofrece un desplazamiento fluido, con o sin mousePad. Además, la instalación es rápida y fácil: basta con conectar el cable a un puerto USB, sin necesidad de instalar software. Consta de un seguimiento óptico de alta definición: disfrutará de un control preciso y uniforme del cursor, y de una selección de texto fácil, gracias al seguimiento óptico de alta definición (1000 dpi).',
         descripcionCorta: 'Ya sea diestro o zurdo, se sentirá cómodo durante horas con este diseño de tama...',
         precio: 4387,
-        categoría: 'Periféricos PC',
+        categoria: 'Periféricos PC',
         imagen1: 'Logitech-M100',
         imagen2: 'Logitech-M100-2',
         imagen3: 'Logitech-M100-3',
@@ -34,7 +34,7 @@ let productos = [{
         descripcion: 'Vuelve a disfrutar tecleando durante horas: pasa largas horas delante de tu computadora sin apenas darte cuenta con el nuevo teclado K120 de Logitech, un teclado USB, de diseño estándar y teclado numérico. Gracias a su teclado liso y delgado, con teclas planas y barra espaciadora curvada, escribirás cómodamente y sin hacer ruido durante horas y horas, ya que permite que las manos permanezcan en una posición descansada y natural mientras escribes. Cuenta con patas ajustables, si prefieres una posición más ergonómica solo tienes que extender sus patas ajustables y robustas.',
         descripcionCorta: 'Vuelve a disfrutar tecleando durante horas: pasa largas horas delante de tu...',
         precio: 4199,
-        categoría: 'Periféricos PC',
+        categoria: 'Periféricos PC',
         imagen1: 'LogitechK120',
         imagen2: 'LogitechK120-2',
         imagen3: 'LogitechK120',
@@ -46,7 +46,7 @@ let productos = [{
         descripcion: 'El iPhone 12 Mini incluye grandes funcionalidades en un diseño compacto de 5.4 pulgadas. Tiene una espectacular pantalla Super Retina XDR. Un frente de Ceramic Shield, cuatro veces más resistente a las caídas. Modo Noche en todas las cámaras, para que puedas tomar fotos increíbles con poca luz. Grabación, edición y reproducción de video HDR en Dolby Vision con calidad cinematográfica. Y el potente chip A14 Bionic. Además, es compatible con los nuevos accesorios MagSafe, que se acoplan fácilmente a tu iPhone y permiten una carga inalámbrica más rápida. Un verdadero gigante.',
         descripcionCorta: 'El iPhone 12 Mini incluye grandes funcionalidades en un diseño compac...',
         precio: 291999,
-        categoría: 'Celulares',
+        categoria: 'Celulares',
         imagen1: 'iphone-12',
         imagen2: 'iphone-12-2',
         imagen3: 'iphone-12-3',
@@ -58,7 +58,7 @@ let productos = [{
         descripcion: 'Tu nuevo superpoder. Una pantalla superbrillante en un diseño resistente. Una nueva funcionalidad para grabar videos dignos de Hollywood de una forma superfácil. Un chip ultrarrápido. Y un gran salto en duración de batería que vas a notar todos los días. Una pantalla OLED más brillante que ahorra energía y se ve increíble incluso a pleno sol. Y un diseño duradero resistente al agua y al polvo.  El iPhone 13 cuenta con una pantalla OLED de 6.1 pulgadas sin marco con una resolución de 2532 x 1170 píxeles a 460 ppi que te permite visualizar tus contenidos de forma más nítida y clara.',
         descripcionCorta: 'Tu nuevo superpoder. Una pantalla superbrillante en un diseño resistente...',
         precio: 470000,
-        categoría: 'Celulares',
+        categoria: 'Celulares',
         imagen1: 'iphone-13',
         imagen2: 'iphone-13-2',
         imagen3: 'iphone-13-3',
@@ -70,7 +70,7 @@ let productos = [{
         descripcion: 'El Samsung A13 es el celular ideal si estás buscando una buena resolución, una excelente cámara y, por supuesto, mucha memoria para una navegación más veloz. Imágenes de calidad para disfrutar con amigos: disfrutá sacando increíbles fotografías con la cámara Quad del Samsung A13, con una resolución de 50 mpx y Flash LED, además de su zoom digital 10x. Aprovechá todo el espacio disponible para tus apps: una de las características del Samsung A13 es su memoria interna de 128 GB, de las que quedan disponibles 105 GB para tu uso personal.',
         descripcionCorta: 'El Samsung A13 es el celular ideal si estás buscando una buena resolución, una...',
         precio: 72999,
-        categoría: 'Celulares',
+        categoria: 'Celulares',
         imagen1: 'samsungA13',
         imagen2: 'samsungA13-2',
         imagen3: 'samsungA13-3',
@@ -82,7 +82,7 @@ let productos = [{
         descripcion: 'Creada para el presente, diseñada para el futuro. La notebook Dell Inspiron brinda a los usuarios sostenibilidad, rendimiento y comodidad. Cuenta con una Procesador AMD Ryzen 5 3450U Quad-Core, memoria RAM de 8 GB DDR4 y memoria de almacenamiento SSD M.2 NVMe de 256 GB. Con una pantalla LED de 15.6" con resolución HD (1366 x 768p) y gráficos AMD Radeon para imágenes nítidas y claras. Manténgase en contacto con compañeros de trabajo o clientes usando la cámara web, los parlantes y el micrófono integrado. Disponible con Windows 11 Home o Windows 11 Pro.',
         descripcionCorta: 'Creada para el presente, diseñada para el futuro. La notebook Dell Inspiron brinda...',
         precio: 227039,
-        categoría: 'Notebooks',
+        categoria: 'Notebooks',
         imagen1: 'dell-inspiron',
         imagen2: 'dell-inspiron-2',
         imagen3: 'dell-inspiron-3',
@@ -94,7 +94,7 @@ let productos = [{
         descripcion: 'La destreza que muestras, los enemigos que superas, los compañeros de equipo a los que inspiras, las cosas asombrosas que haces posible cuando juegas conducen directamente a las cosas increíbles que haces en la vida. Lenovo Legion lo celebra y sirve de conducto épico para unir ambos mundos: el inconteniblemente elegante y el indomablemente salvaje. Con núcleos verdaderamente revolucionarios en rendimiento y eficiencia, los procesadores Intel Core de 12va generación son ideales para streaming, edición, juegos y grabaciones. Un máximo nivel de potencia cuando más lo necesitas.',
         descripcionCorta: 'La destreza que muestras, los enemigos que superas, los compañeros de equip...',
         precio: 419999,
-        categoría: 'Notebooks',
+        categoria: 'Notebooks',
         imagen1: 'lenovo-legion',
         imagen2: 'lenovo-legion-2',
         imagen3: 'lenovo-legion-3',
@@ -106,7 +106,7 @@ let productos = [{
         descripcion: 'El diseño térmico inspirado en Alienware ofrece una refrigeración óptima gracias a dos entradas de aire, palas de ventilador ultrafinas, conductos de cobre y cuatro rejillas de ventilación situadas estratégicamente. Por tanto, tu sistema se mantendrá frío en el fragor de la acción. Además, con procesadores hasta Intel i5 de 12 núcleos o i7 de 14 núcleos de 12.ª generación, así como perfiles de rendimiento optimizado, puedes disfrutar de una potencia y una coherencia de alto nivel durante cualquier experiencia de juego.',
         descripcionCorta: 'El diseño térmico inspirado en Alienware ofrece una refrigeración óptima gracias...',
         precio: 339999,
-        categoría: 'Notebooks',
+        categoria: 'Notebooks',
         imagen1: 'dell-g15',
         imagen2: 'dell-g15-2',
         imagen3: 'dell-g15-3',
@@ -119,12 +119,15 @@ let productos = [{
 /*Elementos HTML en los que se van a mostrar los productos dinámicamente*/
 let contenedorProductos = document.getElementById('products');
 let contenedorMain = document.getElementById('main');
+let headerCarrito = document.getElementById('header-cart');
 
 
 /*Función para mostrar el catálogo de productos*/
-const cargarProductos = function () {
+const cargarProductos = function (productosElegidos) {
 
-    productos.forEach(producto => {
+    contenedorProductos.innerHTML = "";
+
+    productosElegidos.forEach(producto => {
 
         let divCard = document.createElement("div");
         divCard.classList.add("card");
@@ -141,7 +144,7 @@ const cargarProductos = function () {
 
         let spanCategoria = document.createElement("span");
         spanCategoria.classList.add("margin-card");
-        spanCategoria.textContent = producto.categoría;
+        spanCategoria.textContent = producto.categoria;
 
         let tituloNombre = document.createElement("h2");
         tituloNombre.classList.add("h2", "margin-tiny");
@@ -187,11 +190,10 @@ const cargarProductos = function () {
 
 }
 
-cargarProductos();
+cargarProductos(productos);
 
 
-
-/*Función para cargar dinámicamente las ventanas modales de cada producto*/
+/*Función para crear dinámicamente las ventanas modales de cada producto*/
 const cargarVentanaModalProducto = function () {
 
     productos.forEach(producto => {
@@ -246,7 +248,7 @@ const cargarVentanaModalProducto = function () {
 
         let spanCategoriaModal = document.createElement("span");
         spanCategoriaModal.classList.add("subtitle", "margin-modal-subtitle");
-        spanCategoriaModal.textContent = producto.categoría;
+        spanCategoriaModal.textContent = producto.categoria;
 
         let tituloNombreModal = document.createElement("h1");
         tituloNombreModal.classList.add("h1", "margin-modal");
@@ -350,7 +352,6 @@ const cargarVentanaModalProducto = function () {
 cargarVentanaModalProducto();
 
 
-
 /*Función para el correcto funcionamiento de las ventanas modales de cada producto*/
 const mostrarVentanaModalProducto = function () {
 
@@ -381,8 +382,42 @@ mostrarVentanaModalProducto();
 
 
 
+/*Función para cambiar de categoría en el catálogo de productos*/
+let botonesCategoria = document.querySelectorAll('.category-button');
+let tituloCategoria = document.getElementById('titulo-categoria');
+
+botonesCategoria.forEach(boton => {
+
+    boton.addEventListener("click", (e) => {
+
+        //Cambiamos las clases para mostrar visualmente la elección del usuario
+        botonesCategoria.forEach(boton => {
+            boton.classList.remove("active")
+        });
+        e.currentTarget.classList.add("active");
+
+        //Utilizamos el método filter para crear un array que contenga los productos de la categoría seleccionada y lo mostramos en el HTML usándolo como parámetro en nuestra función cargarProductos
+        if (e.currentTarget.id != "Todos") {
+            //También usamos el método find para obtener el nombre de la categoría y mostrarlo visualmente
+            let nombreCategoriaElegida = productos.find(producto => producto.categoria === e.currentTarget.id);
+            tituloCategoria.textContent = nombreCategoriaElegida.categoria;
+
+            let productosBoton = productos.filter(producto => producto.categoria === e.currentTarget.id);
+            cargarProductos(productosBoton);
+        } else {
+            tituloCategoria.textContent = "Destacados";
+            cargarProductos(productos);
+        }
+
+
+    });
+
+})
+
+
+
+
 /*Carrito de compras*/
-let headerCarrito = document.getElementById('header-cart');
 
 
 /*Función para crear dinámicamente el carrito de compras*/
