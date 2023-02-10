@@ -691,6 +691,8 @@ header {
     font-family: var(--font-family-medium);
     font-size: var(--font-size-20px);
     text-align: center;
+    cursor: default;
+    pointer-events: none;
 
     background-color: var(--light-color);
     border: none;
