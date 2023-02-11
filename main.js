@@ -189,12 +189,12 @@ const cargarVentanaModalCarrito = function () {
     divSubtotal.appendChild(pTotal);
     divSubtotal.appendChild(pTotalNúmero);
 
-    headerCarrito.addEventListener("click", function () {
-        divBgModalCarrito.style.display = "flex";
-        setTimeout(() => {
-            sectionCarrito.style.right = "0%";
-        }, 10);
-    });
+
+    divBgModalCarrito.style.display = "flex";
+    setTimeout(() => {
+        sectionCarrito.style.right = "0%";
+    }, 10);
+
 
     spanCloseModalCarrito.addEventListener("click", function () {
         sectionCarrito.style.right = "-100%";
@@ -213,7 +213,7 @@ const cargarVentanaModalCarrito = function () {
     });
 }
 
-cargarVentanaModalCarrito();
+headerCarrito.addEventListener("click", cargarVentanaModalCarrito);
 
 
 
@@ -221,7 +221,7 @@ cargarVentanaModalCarrito();
 const carrito = [];
 let contadorCarrito = document.getElementById('cart-count');
 let totalCarrito = document.getElementById('cart-total');
-let contenedorProductosCarrito = document.getElementById('products-container-carrito');
+
 
 
 const agregarAlCarrito = function (e) {
@@ -255,24 +255,8 @@ const agregarAlCarrito = function (e) {
     }
     actualizarContadorCarrito();
 
-    //Mostramos los productos agregados en la ventana modal del carrito
-    carrito.forEach(producto => {
-
-        let divProductAdded = document.createElement("div");
-        divProductAdded.classList.add("product-added");
-        divProductAdded.textContent = 'hola';
-        contenedorProductosCarrito.appendChild(divProductAdded);
-
-    })
-
-
-
 
 }
-
-
-
-
 
 
 
@@ -520,7 +504,7 @@ const cargarVentanaModalProducto = function (productosElegidos) {
         });
 
 
-        buttonAgregarCarritoModal.addEventListener('click', agregarAlCarrito);
+        // buttonAgregarCarritoModal.addEventListener('click', agregarAlCarritoDesdeModal);
 
     });
 
@@ -588,3 +572,24 @@ botonesCategoria.forEach(boton => {
     });
 
 })
+
+
+
+//Mostramos los productos agregados en la ventana modal del carrito
+// let contenedorProductosCarrito = document.getElementById('products-container-carrito');
+
+// const productosEnCarrito = function () {
+
+//     carrito.forEach(producto => {
+
+//         let divProductAdded = document.createElement("div");
+//         divProductAdded.classList.add("product-added");
+//         divProductAdded.textContent = producto.id;
+
+//         contenedorProductosCarrito.appendChild(divProductAdded);
+
+//     })
+
+
+
+// }
