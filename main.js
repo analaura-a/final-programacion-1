@@ -224,6 +224,11 @@ function renderizarCarrito() {
             divProductsContainer.innerHTML = '';
             renderizarCarrito();
 
+            if (carrito.length == 0) {
+                spanSubtitulo.textContent = `0 items`;
+                pTotalNúmero.textContent = "$0";
+            }
+
             //Renderizamos nuevamente las cantidades del carrito en el nav
             contadorCarrito.setAttribute("data-header-cart-count", carrito.reduce((acc, producto) => acc + producto.cantidad, 0));
             let productoAgregado = productos.find(producto => `eliminar${producto.id}` === idBoton);
