@@ -630,23 +630,20 @@ const cargarVentanaModalProducto = function (productosElegidos) {
                 console.log(carrito);
             }
 
-
-
             //Calculamos el subtotal
-            // productoAgregado.subtotal = productoAgregado.precio * productoAgregado.cantidad;
+            productoAgregado.subtotal = productoAgregado.precio * productoAgregado.cantidad;
 
-            // //Calculamos el total
-            // let total = carrito.reduce((acc, producto) => acc + producto.subtotal, 0);
-            // console.log(total);
+            //Calculamos el total
+            let total = carrito.reduce((acc, producto) => acc + producto.subtotal, 0);
 
-            // //Mostramos la cantidad y el total del carrito en el nav
-            // const actualizarContadorCarrito = function () {
-            //     let numero = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
-            //     contadorCarrito.setAttribute("data-header-cart-count", numero);
+            //Mostramos la cantidad y el total del carrito en el nav
+            const actualizarContadorCarrito = function () {
+                let numero = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+                contadorCarrito.setAttribute("data-header-cart-count", numero);
 
-            //     totalCarrito.textContent = `$${total.toLocaleString('de-DE')}`;
-            // }
-            // actualizarContadorCarrito();
+                totalCarrito.textContent = `$${total.toLocaleString('de-DE')}`;
+            }
+            actualizarContadorCarrito();
 
 
         }
