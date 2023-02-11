@@ -116,6 +116,25 @@ let productos = [{
 ];
 
 
+
+
+/*Carrito de compras*/
+const carrito = [];
+
+const agregarAlCarrito = function (e) {
+
+    let idBoton = e.currentTarget.id;
+    let productoAgregado = productos.find(producto => `agregar${producto.id}` === idBoton);
+
+    console.log(productoAgregado);
+
+}
+
+
+
+
+
+
 /*Elementos HTML en los que se van a mostrar los productos dinámicamente*/
 let contenedorProductos = document.getElementById('products');
 let contenedorMain = document.getElementById('main');
@@ -167,7 +186,7 @@ const cargarProductos = function (productosElegidos) {
         buttonMasInfo.textContent = 'Más info';
 
         let buttonAgregarCarrito = document.createElement("button");
-        buttonAgregarCarrito.classList.add("button", "main_cta");
+        buttonAgregarCarrito.classList.add("button", "main_cta", "addtocart");
         buttonAgregarCarrito.setAttribute('id', `agregar${producto.id}`);
         buttonAgregarCarrito.textContent = 'Agregar al carrito';
 
@@ -185,6 +204,8 @@ const cargarProductos = function (productosElegidos) {
 
         divBotones.appendChild(buttonMasInfo);
         divBotones.appendChild(buttonAgregarCarrito);
+
+        buttonAgregarCarrito.addEventListener('click', agregarAlCarrito);
 
     });
 
@@ -285,7 +306,7 @@ const cargarVentanaModalProducto = function (productosElegidos) {
         spanInputPlus.textContent = "+";
 
         let buttonAgregarCarritoModal = document.createElement("button");
-        buttonAgregarCarritoModal.classList.add("button", "main_cta", "cta_light-bg");
+        buttonAgregarCarritoModal.classList.add("button", "main_cta", "cta_light-bg", "addtocart");
         buttonAgregarCarritoModal.setAttribute('id', `agregar${producto.id}modal`);
         buttonAgregarCarritoModal.textContent = 'Agregar al carrito';
 
@@ -327,6 +348,7 @@ const cargarVentanaModalProducto = function (productosElegidos) {
         divInputPrice.appendChild(inputNumber);
         divInputPrice.appendChild(spanInputPlus);
 
+        /*Funcionamiento de las ventanas modales*/
         let buttonMasInfoModal = document.getElementById(`info${producto.id}`);
         let modalConID = document.getElementById(`modal${producto.id}`);
 
@@ -343,7 +365,6 @@ const cargarVentanaModalProducto = function (productosElegidos) {
                 modalConID.style.display = "none";
             }
         });
-
 
         /*Funcionamiento de la galería de fotos*/
         let thumbnailsGaleria = [galleryThumbnail1, galleryThumbnail2, galleryThumbnail3, galleryThumbnail4];
@@ -362,6 +383,9 @@ const cargarVentanaModalProducto = function (productosElegidos) {
 
             });
         });
+
+
+        buttonAgregarCarritoModal.addEventListener('click', agregarAlCarrito);
 
     });
 
@@ -403,7 +427,7 @@ botonesCategoria.forEach(boton => {
 
         }
 
-        //Cambiamos las clases para mostrar visualmente la elección de categoría del usuario
+        //Mostramos visualmente la elección de categoría del usuario
         botonesCategoria.forEach(boton => {
             boton.classList.remove("active");
         });
@@ -431,7 +455,7 @@ botonesCategoria.forEach(boton => {
 })
 
 
-/*Carrito de compras*/
+
 
 
 /*Función para crear dinámicamente la ventana modal del carrito de compras*/
