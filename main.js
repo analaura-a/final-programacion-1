@@ -125,19 +125,119 @@ let productos = [{
 ];
 
 
-
 /*Elementos del DOM en los que se van a mostrar los productos y otra información dinámicamente*/
 let contenedorProductos = document.getElementById('products');
 let contenedorMain = document.getElementById('main');
 let headerCarrito = document.getElementById('header-cart');
 let contadorCarrito = document.getElementById('cart-count');
 let totalCarrito = document.getElementById('cart-total');
+let divProductsContainer;
+let spanSubtitulo;
+let pTotalNúmero;
 
 
 /*Carrito de compras*/
 let carrito = [];
 
-/*Función para crear dinámicamente la ventana modal del carrito de compras*/
+/*Función para actualizar dinámicamente los productos que se muestran en el carrito*/
+function renderizarCarrito() {
+    carrito.forEach((producto) => {
+
+        spanSubtitulo.textContent = `${carrito.reduce((acc, producto) => acc + producto.cantidad, 0)} items`;
+
+        pTotalNúmero.textContent = `$${carrito.reduce((acc, producto) => acc + producto.subtotal, 0).toLocaleString('de-DE')}`;
+
+        let divProductAdded = document.createElement("div");
+        divProductAdded.classList.add("product-added");
+
+        let divProductInfo = document.createElement("div");
+        divProductInfo.classList.add("product-info");
+
+        let imgCarrito = document.createElement("img");
+        imgCarrito.classList.add("img-carrito");
+        imgCarrito.setAttribute("src", `assets/imgs/${producto.imagen1}.jpg`);
+        imgCarrito.setAttribute("alt", producto.nombre);
+
+        let divDivProductInfo = document.createElement("div");
+
+        let h2Carrito = document.createElement("h2");
+        h2Carrito.classList.add("h2");
+        h2Carrito.textContent = producto.nombre;
+
+        let pProductoCarrito = document.createElement("p");
+        pProductoCarrito.textContent = `$${producto.precio.toLocaleString('de-DE')}`;
+
+        let divProductAction = document.createElement("div");
+        divProductAction.classList.add("product-action");
+
+        let spanDeleteItem = document.createElement("span");
+        spanDeleteItem.classList.add("delete-item");
+        spanDeleteItem.setAttribute('id', `eliminar${producto.id}`);
+
+        let svgCarrito = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svgCarrito.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        svgCarrito.setAttribute("width", "48");
+        svgCarrito.setAttribute("height", "48");
+        svgCarrito.setAttribute("viewBox", "0 0 48 48");
+
+        let pathCarrito = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        pathCarrito.setAttribute("d", "M36.813 13.782a28.09 28.09 0 0 0-.325-1.166c-.212-.775-.748-.775-1.544-.909l-4.315-.558c-.536-.091-.536-.091-.748-.566C29.174 8.95 28.955 8 28.183 8h-8.37c-.771 0-.983.95-1.69 2.591-.211.466-.211.466-.747.567l-4.323.558c-.788.133-1.357.208-1.569.983 0 0-.097.341-.3 1.083-.26.991-.366.883.528.883h24.573c.893.008.796.108.528-.883ZM34.026 17.33H13.97c-1.349 0-1.414.184-1.333 1.226l1.52 20.211c.13 1.025.227 1.233 1.422 1.233h16.837c1.194 0 1.292-.208 1.422-1.233l1.52-20.211c.08-1.05.015-1.225-1.334-1.225Z");
+
+        let spanCantidad = document.createElement("span");
+        spanCantidad.classList.add("cantidad");
+        spanCantidad.textContent = `Cantidad: ${producto.cantidad}`;
+
+        divProductsContainer.appendChild(divProductAdded);
+
+        divProductAdded.appendChild(divProductInfo);
+        divProductAdded.appendChild(divProductAction);
+
+        divProductInfo.appendChild(imgCarrito);
+        divProductInfo.appendChild(divDivProductInfo);
+
+        divDivProductInfo.appendChild(h2Carrito);
+        divDivProductInfo.appendChild(pProductoCarrito);
+
+        divProductAction.appendChild(spanDeleteItem);
+        divProductAction.appendChild(spanCantidad);
+
+        spanDeleteItem.appendChild(svgCarrito);
+
+        svgCarrito.appendChild(pathCarrito);
+
+
+        /*Función para eliminar un producto particular del carrito*/
+        spanDeleteItem.addEventListener("click", (e) => {
+
+            //Identificamos el producto a eliminar
+            let idBoton = e.currentTarget.id;
+            console.log(idBoton);
+            let index = carrito.findIndex(producto => `eliminar${producto.id}` === idBoton);
+            console.log(index);
+
+            // Lo eliminamos del carrito
+            console.log(carrito);
+            carrito.splice(index, 1);
+            console.log(carrito);
+
+            //Renderizamos nuevamente el carrito
+            divProductsContainer.innerHTML = '';
+            renderizarCarrito();
+
+            //Renderizamos nuevamente las cantidades del carrito en el nav
+            contadorCarrito.setAttribute("data-header-cart-count", carrito.reduce((acc, producto) => acc + producto.cantidad, 0));
+            let productoAgregado = productos.find(producto => `eliminar${producto.id}` === idBoton);
+            productoAgregado.subtotal = productoAgregado.precio * productoAgregado.cantidad;
+            let total = carrito.reduce((acc, producto) => acc + producto.subtotal, 0);
+            totalCarrito.textContent = `$${total.toLocaleString('de-DE')}`;
+
+        });
+
+    });
+}
+
+
+/*Función para crear la ventana modal del carrito de compras (donde se muestran los productos agregados)*/
 const cargarVentanaModalCarrito = function () {
 
     let divBgModalCarrito = document.createElement("div");
@@ -156,11 +256,11 @@ const cargarVentanaModalCarrito = function () {
     h1Titulo.classList.add("h1");
     h1Titulo.textContent = "Mi carrito";
 
-    let spanSubtitulo = document.createElement("span");
+    spanSubtitulo = document.createElement("span");
     spanSubtitulo.classList.add("subtitle-carrito");
     spanSubtitulo.textContent = `0 items`;
 
-    let divProductsContainer = document.createElement("div");
+    divProductsContainer = document.createElement("div");
     divProductsContainer.classList.add("products-container");
     divProductsContainer.setAttribute('id', 'products-container-carrito');
 
@@ -172,7 +272,7 @@ const cargarVentanaModalCarrito = function () {
     let pTotal = document.createElement("p");
     pTotal.textContent = "Total";
 
-    let pTotalNúmero = document.createElement("p");
+    pTotalNúmero = document.createElement("p");
     pTotalNúmero.textContent = "$0";
 
     let buttonCheckout = document.createElement("button");
@@ -225,77 +325,12 @@ const cargarVentanaModalCarrito = function () {
         }
     });
 
-    function renderizarCarrito() {
-        carrito.forEach((producto) => {
-
-            spanSubtitulo.textContent = `${carrito.reduce((acc, producto) => acc + producto.cantidad, 0)} items`;
-
-            pTotalNúmero.textContent = `$${carrito.reduce((acc, producto) => acc + producto.subtotal, 0).toLocaleString('de-DE')}`;
-
-            let divProductAdded = document.createElement("div");
-            divProductAdded.classList.add("product-added");
-
-            let divProductInfo = document.createElement("div");
-            divProductInfo.classList.add("product-info");
-
-            let imgCarrito = document.createElement("img");
-            imgCarrito.classList.add("img-carrito");
-            imgCarrito.setAttribute("src", `assets/imgs/${producto.imagen1}.jpg`);
-            imgCarrito.setAttribute("alt", producto.nombre);
-
-            let divDivProductInfo = document.createElement("div");
-
-            let h2Carrito = document.createElement("h2");
-            h2Carrito.classList.add("h2");
-            h2Carrito.textContent = producto.nombre;
-
-            let pProductoCarrito = document.createElement("p");
-            pProductoCarrito.textContent = `$${producto.precio.toLocaleString('de-DE')}`;
-
-            let divProductAction = document.createElement("div");
-            divProductAction.classList.add("product-action");
-
-            let spanDeleteItem = document.createElement("span");
-            spanDeleteItem.classList.add("delete-item");
-            spanDeleteItem.setAttribute('id', `eliminar${producto.id}`);
-
-            let svgCarrito = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            svgCarrito.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-            svgCarrito.setAttribute("width", "48");
-            svgCarrito.setAttribute("height", "48");
-            svgCarrito.setAttribute("viewBox", "0 0 48 48");
-
-            let pathCarrito = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            pathCarrito.setAttribute("d", "M36.813 13.782a28.09 28.09 0 0 0-.325-1.166c-.212-.775-.748-.775-1.544-.909l-4.315-.558c-.536-.091-.536-.091-.748-.566C29.174 8.95 28.955 8 28.183 8h-8.37c-.771 0-.983.95-1.69 2.591-.211.466-.211.466-.747.567l-4.323.558c-.788.133-1.357.208-1.569.983 0 0-.097.341-.3 1.083-.26.991-.366.883.528.883h24.573c.893.008.796.108.528-.883ZM34.026 17.33H13.97c-1.349 0-1.414.184-1.333 1.226l1.52 20.211c.13 1.025.227 1.233 1.422 1.233h16.837c1.194 0 1.292-.208 1.422-1.233l1.52-20.211c.08-1.05.015-1.225-1.334-1.225Z");
-
-            let spanCantidad = document.createElement("span");
-            spanCantidad.classList.add("cantidad");
-            spanCantidad.textContent = `Cantidad: ${producto.cantidad}`;
-
-            divProductsContainer.appendChild(divProductAdded);
-
-            divProductAdded.appendChild(divProductInfo);
-            divProductAdded.appendChild(divProductAction);
-
-            divProductInfo.appendChild(imgCarrito);
-            divProductInfo.appendChild(divDivProductInfo);
-
-            divDivProductInfo.appendChild(h2Carrito);
-            divDivProductInfo.appendChild(pProductoCarrito);
-
-            divProductAction.appendChild(spanDeleteItem);
-            divProductAction.appendChild(spanCantidad);
-
-            spanDeleteItem.appendChild(svgCarrito);
-
-            svgCarrito.appendChild(pathCarrito);
-        });
-    }
-
     renderizarCarrito();
 
     /*Función para vaciar el carrito*/
     buttonVaciarCarrito.addEventListener("click", () => {
+
+        //Vaciamos el carrito
         carrito = [];
         console.log(carrito);
 
@@ -311,14 +346,9 @@ const cargarVentanaModalCarrito = function () {
 
     });
 
-    
-
-
-
 }
 
 headerCarrito.addEventListener("click", cargarVentanaModalCarrito);
-
 
 
 /*Función para agregar productos al carrito de compras*/
@@ -342,7 +372,6 @@ const agregarAlCarrito = function (e) {
 
     //Calculamos el total
     let total = carrito.reduce((acc, producto) => acc + producto.subtotal, 0);
-    // console.log(total);
 
     //Mostramos la cantidad y el total del carrito en el nav
     const actualizarContadorCarrito = function () {
@@ -353,15 +382,10 @@ const agregarAlCarrito = function (e) {
     }
     actualizarContadorCarrito();
 
-
 }
 
 
-
-
-
-
-/*Función para mostrar el catálogo de productos*/
+/*Función para crear dinámicamente el catálogo de productos*/
 const cargarProductos = function (productosElegidos) {
 
     contenedorProductos.innerHTML = "";
@@ -570,7 +594,6 @@ const cargarVentanaModalProducto = function (productosElegidos) {
         divInputPrice.appendChild(inputNumber);
         divInputPrice.appendChild(spanInputPlus);
 
-        /*Funcionamiento de las ventanas modales*/
         let buttonMasInfoModal = document.getElementById(`info${producto.id}`);
         let modalConID = document.getElementById(`modal${producto.id}`);
 
@@ -635,14 +658,11 @@ const cargarVentanaModalProducto = function (productosElegidos) {
 
                 lastValue = userInputNumber;
                 productoAgregado.cantidad += lastValue;
-                console.log(carrito);
 
             } else {
                 lastValue = parseInt(inputNumber.value);
                 productoAgregado.cantidad = lastValue;
                 carrito.push(productoAgregado);
-
-                console.log(carrito);
             }
 
             //Calculamos el subtotal
@@ -669,20 +689,6 @@ const cargarVentanaModalProducto = function (productosElegidos) {
 }
 
 cargarVentanaModalProducto(productos);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*Función para cambiar de categoría en el catálogo de productos (y rotar los banners flotantes)*/
@@ -723,7 +729,7 @@ botonesCategoria.forEach(boton => {
         });
         e.currentTarget.classList.add("active");
 
-        //Utilizamos el método filter para crear un array que contenga los productos de la categoría seleccionada y lo mostramos en el HTML usándolo como parámetro en nuestra función cargarProductos
+        //Utilizamos el método filter para crear un array que contenga los productos de la categoría seleccionada
         if (e.currentTarget.id != "Todos") {
             //También usamos el método find para obtener el nombre de la categoría seleccionada y poder mostrarlo visualmente
             let nombreCategoriaElegida = productos.find(producto => producto.categoria === e.currentTarget.id);
