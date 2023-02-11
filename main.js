@@ -410,7 +410,7 @@ cargarProductos(productos);
 
 
 /*Función para crear dinámicamente las ventanas modales de cada producto*/
-let userInputNumber = 0;
+let userInputNumber = 1;
 
 const cargarVentanaModalProducto = function (productosElegidos) {
 
@@ -496,7 +496,7 @@ const cargarVentanaModalProducto = function (productosElegidos) {
         let inputNumber = document.createElement("input");
         inputNumber.classList.add("input-number");
         inputNumber.setAttribute("type", "text");
-        inputNumber.setAttribute("value", "0");
+        inputNumber.setAttribute("value", "1");
 
         let spanInputPlus = document.createElement("span");
         spanInputPlus.classList.add("input-plus");
@@ -585,6 +585,7 @@ const cargarVentanaModalProducto = function (productosElegidos) {
 
         /*Funcionalidad para que el usuario pueda elegir la cantidad de productos que quiere agregar al carrito*/
         spanInputPlus.addEventListener("click", () => {
+
             userInputNumber++;
 
             inputNumber.setAttribute("value", userInputNumber);
@@ -592,8 +593,8 @@ const cargarVentanaModalProducto = function (productosElegidos) {
 
         spanInputMinus.addEventListener("click", () => {
 
-            if (userInputNumber <= 0) {
-                userInputNumber = 0;
+            if (userInputNumber <= 1) {
+                userInputNumber = 1;
             } else {
                 userInputNumber--;
             }
@@ -613,27 +614,23 @@ const cargarVentanaModalProducto = function (productosElegidos) {
             let idBoton = e.currentTarget.id;
             let productoAgregado = productos.find(producto => `agregar${producto.id}modal` === idBoton);
 
-            lastValue = lastValue + userInputNumber;
 
             //Agregamos la cantidad del producto seleccionado al carrito
+            if (carrito.some(producto => `agregar${producto.id}modal` === idBoton)) {
 
-            if (userInputNumber == 0 || lastValue == 0) {
-                return;
+                lastValue = userInputNumber;
+                productoAgregado.cantidad += lastValue;
+                console.log(carrito);
+
             } else {
-                if (carrito.some(producto => `agregar${producto.id}modal` === idBoton)) {
-                    productoAgregado.cantidad = lastValue;
-                    console.log(carrito);
-                } else {
-                    if (userInputNumber == 0 || lastValue == 0) {
-                        return;
-                    } else {
-                        productoAgregado.cantidad = lastValue;
-                        carrito.push(productoAgregado);
-                        console.log(carrito);
-                    }
-                }
+                lastValue = parseInt(inputNumber.value);
+                productoAgregado.cantidad = lastValue;
+                carrito.push(productoAgregado);
 
+                console.log(carrito);
             }
+
+
 
             //Calculamos el subtotal
             // productoAgregado.subtotal = productoAgregado.precio * productoAgregado.cantidad;
