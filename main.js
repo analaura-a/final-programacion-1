@@ -135,7 +135,7 @@ let totalCarrito = document.getElementById('cart-total');
 
 
 /*Carrito de compras*/
-const carrito = [];
+let carrito = [];
 
 /*Función para crear dinámicamente la ventana modal del carrito de compras*/
 const cargarVentanaModalCarrito = function () {
@@ -225,70 +225,95 @@ const cargarVentanaModalCarrito = function () {
         }
     });
 
-    carrito.forEach((producto) => {
+    function renderizarCarrito() {
+        carrito.forEach((producto) => {
 
-        spanSubtitulo.textContent = `${carrito.reduce((acc, producto) => acc + producto.cantidad, 0)} items`;
+            spanSubtitulo.textContent = `${carrito.reduce((acc, producto) => acc + producto.cantidad, 0)} items`;
 
-        pTotalNúmero.textContent = `$${carrito.reduce((acc, producto) => acc + producto.subtotal, 0).toLocaleString('de-DE')}`;
+            pTotalNúmero.textContent = `$${carrito.reduce((acc, producto) => acc + producto.subtotal, 0).toLocaleString('de-DE')}`;
 
-        let divProductAdded = document.createElement("div");
-        divProductAdded.classList.add("product-added");
+            let divProductAdded = document.createElement("div");
+            divProductAdded.classList.add("product-added");
 
-        let divProductInfo = document.createElement("div");
-        divProductInfo.classList.add("product-info");
+            let divProductInfo = document.createElement("div");
+            divProductInfo.classList.add("product-info");
 
-        let imgCarrito = document.createElement("img");
-        imgCarrito.classList.add("img-carrito");
-        imgCarrito.setAttribute("src", `assets/imgs/${producto.imagen1}.jpg`);
-        imgCarrito.setAttribute("alt", producto.nombre);
+            let imgCarrito = document.createElement("img");
+            imgCarrito.classList.add("img-carrito");
+            imgCarrito.setAttribute("src", `assets/imgs/${producto.imagen1}.jpg`);
+            imgCarrito.setAttribute("alt", producto.nombre);
 
-        let divDivProductInfo = document.createElement("div");
+            let divDivProductInfo = document.createElement("div");
 
-        let h2Carrito = document.createElement("h2");
-        h2Carrito.classList.add("h2");
-        h2Carrito.textContent = producto.nombre;
+            let h2Carrito = document.createElement("h2");
+            h2Carrito.classList.add("h2");
+            h2Carrito.textContent = producto.nombre;
 
-        let pProductoCarrito = document.createElement("p");
-        pProductoCarrito.textContent = `$${producto.precio.toLocaleString('de-DE')}`;
+            let pProductoCarrito = document.createElement("p");
+            pProductoCarrito.textContent = `$${producto.precio.toLocaleString('de-DE')}`;
 
-        let divProductAction = document.createElement("div");
-        divProductAction.classList.add("product-action");
+            let divProductAction = document.createElement("div");
+            divProductAction.classList.add("product-action");
 
-        let spanDeleteItem = document.createElement("span");
-        spanDeleteItem.classList.add("delete-item");
+            let spanDeleteItem = document.createElement("span");
+            spanDeleteItem.classList.add("delete-item");
+            spanDeleteItem.setAttribute('id', `eliminar${producto.id}`);
 
-        let svgCarrito = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        svgCarrito.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-        svgCarrito.setAttribute("width", "48");
-        svgCarrito.setAttribute("height", "48");
-        svgCarrito.setAttribute("viewBox", "0 0 48 48");
+            let svgCarrito = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svgCarrito.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+            svgCarrito.setAttribute("width", "48");
+            svgCarrito.setAttribute("height", "48");
+            svgCarrito.setAttribute("viewBox", "0 0 48 48");
 
-        let pathCarrito = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        pathCarrito.setAttribute("d", "M36.813 13.782a28.09 28.09 0 0 0-.325-1.166c-.212-.775-.748-.775-1.544-.909l-4.315-.558c-.536-.091-.536-.091-.748-.566C29.174 8.95 28.955 8 28.183 8h-8.37c-.771 0-.983.95-1.69 2.591-.211.466-.211.466-.747.567l-4.323.558c-.788.133-1.357.208-1.569.983 0 0-.097.341-.3 1.083-.26.991-.366.883.528.883h24.573c.893.008.796.108.528-.883ZM34.026 17.33H13.97c-1.349 0-1.414.184-1.333 1.226l1.52 20.211c.13 1.025.227 1.233 1.422 1.233h16.837c1.194 0 1.292-.208 1.422-1.233l1.52-20.211c.08-1.05.015-1.225-1.334-1.225Z");
+            let pathCarrito = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            pathCarrito.setAttribute("d", "M36.813 13.782a28.09 28.09 0 0 0-.325-1.166c-.212-.775-.748-.775-1.544-.909l-4.315-.558c-.536-.091-.536-.091-.748-.566C29.174 8.95 28.955 8 28.183 8h-8.37c-.771 0-.983.95-1.69 2.591-.211.466-.211.466-.747.567l-4.323.558c-.788.133-1.357.208-1.569.983 0 0-.097.341-.3 1.083-.26.991-.366.883.528.883h24.573c.893.008.796.108.528-.883ZM34.026 17.33H13.97c-1.349 0-1.414.184-1.333 1.226l1.52 20.211c.13 1.025.227 1.233 1.422 1.233h16.837c1.194 0 1.292-.208 1.422-1.233l1.52-20.211c.08-1.05.015-1.225-1.334-1.225Z");
 
-        let spanCantidad = document.createElement("span");
-        spanCantidad.classList.add("cantidad");
-        spanCantidad.textContent = `Cantidad: ${producto.cantidad}`;
+            let spanCantidad = document.createElement("span");
+            spanCantidad.classList.add("cantidad");
+            spanCantidad.textContent = `Cantidad: ${producto.cantidad}`;
 
-        divProductsContainer.appendChild(divProductAdded);
+            divProductsContainer.appendChild(divProductAdded);
 
-        divProductAdded.appendChild(divProductInfo);
-        divProductAdded.appendChild(divProductAction);
+            divProductAdded.appendChild(divProductInfo);
+            divProductAdded.appendChild(divProductAction);
 
-        divProductInfo.appendChild(imgCarrito);
-        divProductInfo.appendChild(divDivProductInfo);
+            divProductInfo.appendChild(imgCarrito);
+            divProductInfo.appendChild(divDivProductInfo);
 
-        divDivProductInfo.appendChild(h2Carrito);
-        divDivProductInfo.appendChild(pProductoCarrito);
+            divDivProductInfo.appendChild(h2Carrito);
+            divDivProductInfo.appendChild(pProductoCarrito);
 
-        divProductAction.appendChild(spanDeleteItem);
-        divProductAction.appendChild(spanCantidad);
+            divProductAction.appendChild(spanDeleteItem);
+            divProductAction.appendChild(spanCantidad);
 
-        spanDeleteItem.appendChild(svgCarrito);
+            spanDeleteItem.appendChild(svgCarrito);
 
-        svgCarrito.appendChild(pathCarrito);
+            svgCarrito.appendChild(pathCarrito);
+        });
+    }
+
+    renderizarCarrito();
+
+    /*Función para vaciar el carrito*/
+    buttonVaciarCarrito.addEventListener("click", () => {
+        carrito = [];
+        console.log(carrito);
+
+        //Renderizamos nuevamente el carrito
+        divProductsContainer.innerHTML = '';
+        spanSubtitulo.textContent = `0 items`;
+        pTotalNúmero.textContent = "$0";
+        renderizarCarrito();
+
+        //Renderizamos nuevamente las cantidades del carrito en el nav
+        contadorCarrito.setAttribute("data-header-cart-count", 0);
+        totalCarrito.textContent = "$0";
 
     });
+
+    
+
+
 
 }
 
@@ -581,29 +606,20 @@ const cargarVentanaModalProducto = function (productosElegidos) {
             });
         });
 
-
-
         /*Funcionalidad para que el usuario pueda elegir la cantidad de productos que quiere agregar al carrito*/
         spanInputPlus.addEventListener("click", () => {
-
             userInputNumber++;
-
             inputNumber.setAttribute("value", userInputNumber);
-        })
+        });
 
         spanInputMinus.addEventListener("click", () => {
-
             if (userInputNumber <= 1) {
                 userInputNumber = 1;
             } else {
                 userInputNumber--;
             }
-
             inputNumber.setAttribute("value", userInputNumber);
-
         });
-
-
 
         let lastValue = parseInt(inputNumber.value);
 
@@ -613,7 +629,6 @@ const cargarVentanaModalProducto = function (productosElegidos) {
             //Identificamos el producto a agregar
             let idBoton = e.currentTarget.id;
             let productoAgregado = productos.find(producto => `agregar${producto.id}modal` === idBoton);
-
 
             //Agregamos la cantidad del producto seleccionado al carrito
             if (carrito.some(producto => `agregar${producto.id}modal` === idBoton)) {
@@ -645,13 +660,9 @@ const cargarVentanaModalProducto = function (productosElegidos) {
             }
             actualizarContadorCarrito();
 
-
         }
 
-
         buttonAgregarCarritoModal.addEventListener('click', agregarAlCarritoDesdeModal);
-
-
 
     });
 
