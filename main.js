@@ -117,16 +117,156 @@ let productos = [{
 
 
 
+/*Elementos HTML en los que se van a mostrar los productos dinámicamente*/
+let contenedorProductos = document.getElementById('products');
+let contenedorMain = document.getElementById('main');
+let headerCarrito = document.getElementById('header-cart');
+
+
+
+/*Función para crear dinámicamente la ventana modal del carrito de compras*/
+const cargarVentanaModalCarrito = function () {
+
+    let divBgModalCarrito = document.createElement("div");
+    divBgModalCarrito.classList.add("bg-modal-carrito");
+
+    let sectionCarrito = document.createElement("section");
+    sectionCarrito.classList.add("carrito");
+
+    let spanCloseModalCarrito = document.createElement("span");
+    spanCloseModalCarrito.classList.add("close-modal-carrito");
+    spanCloseModalCarrito.textContent = "x";
+
+    let divTitulo = document.createElement("div");
+
+    let h1Titulo = document.createElement("h1");
+    h1Titulo.classList.add("h1");
+    h1Titulo.textContent = "Mi carrito";
+
+    let spanSubtitulo = document.createElement("span");
+    spanSubtitulo.classList.add("subtitle-carrito");
+    spanSubtitulo.textContent = "0 items";
+
+    let divProductsContainer = document.createElement("div");
+    divProductsContainer.classList.add("products-container");
+    divProductsContainer.setAttribute('id', `products-container-carrito`);
+
+    let divAcciones = document.createElement("div");
+
+    let divSubtotal = document.createElement("div");
+    divSubtotal.classList.add("subtotal");
+
+    let pTotal = document.createElement("p");
+    pTotal.textContent = "Total";
+
+    let pTotalNúmero = document.createElement("p");
+    pTotalNúmero.textContent = "$0";
+
+    let buttonCheckout = document.createElement("button");
+    buttonCheckout.classList.add("button", "main_cta", "cta_light-bg");
+    buttonCheckout.textContent = "Checkout"
+
+    let buttonVaciarCarrito = document.createElement("button");
+    buttonVaciarCarrito.classList.add("empty-button");
+    buttonVaciarCarrito.textContent = "Vaciar carrito";
+
+    contenedorMain.appendChild(divBgModalCarrito);
+
+    divBgModalCarrito.appendChild(sectionCarrito);
+
+    sectionCarrito.appendChild(spanCloseModalCarrito);
+    sectionCarrito.appendChild(divTitulo);
+    sectionCarrito.appendChild(divProductsContainer);
+    sectionCarrito.appendChild(divAcciones);
+
+    divTitulo.appendChild(h1Titulo);
+    divTitulo.appendChild(spanSubtitulo);
+
+    divAcciones.appendChild(divSubtotal);
+    divAcciones.appendChild(buttonCheckout);
+    divAcciones.appendChild(buttonVaciarCarrito);
+
+    divSubtotal.appendChild(pTotal);
+    divSubtotal.appendChild(pTotalNúmero);
+
+    headerCarrito.addEventListener("click", function () {
+        divBgModalCarrito.style.display = "flex";
+        setTimeout(() => {
+            sectionCarrito.style.right = "0%";
+        }, 10);
+    });
+
+    spanCloseModalCarrito.addEventListener("click", function () {
+        sectionCarrito.style.right = "-100%";
+        setTimeout(() => {
+            divBgModalCarrito.style.display = "none";
+        }, 150);
+    });
+
+    window.addEventListener("click", function (event) {
+        if (event.target == divBgModalCarrito) {
+            sectionCarrito.style.right = "-100%";
+            setTimeout(() => {
+                divBgModalCarrito.style.display = "none";
+            }, 150);
+        }
+    });
+}
+
+cargarVentanaModalCarrito();
+
+
 
 /*Carrito de compras*/
 const carrito = [];
+let contadorCarrito = document.getElementById('cart-count');
+let totalCarrito = document.getElementById('cart-total');
+let contenedorProductosCarrito = document.getElementById('products-container-carrito');
+
 
 const agregarAlCarrito = function (e) {
 
+    //Agregamos el producto seleccionado al carrito
     let idBoton = e.currentTarget.id;
     let productoAgregado = productos.find(producto => `agregar${producto.id}` === idBoton);
 
-    console.log(productoAgregado);
+    if (carrito.some(producto => `agregar${producto.id}` === idBoton)) {
+        productoAgregado.cantidad++;
+        console.log(carrito);
+    } else {
+        productoAgregado.cantidad = 1;
+        carrito.push(productoAgregado);
+        console.log(carrito);
+    }
+
+    //Calculamos el subtotal
+    productoAgregado.subtotal = productoAgregado.precio * productoAgregado.cantidad;
+
+    //Calculamos el total
+    let total = carrito.reduce((acc, producto) => acc + producto.subtotal, 0);
+    console.log(total);
+
+    //Mostramos la cantidad y el total del carrito en el header
+    const actualizarContadorCarrito = function () {
+        let numero = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+        contadorCarrito.setAttribute("data-header-cart-count", numero);
+
+        totalCarrito.textContent = `$${total.toLocaleString('de-DE')}`;
+    }
+    actualizarContadorCarrito();
+
+    //Mostramos los productos agregados en la ventana modal del carrito
+    carrito.forEach(producto => {
+
+        let divProductAdded = document.createElement("div");
+        divProductAdded.classList.add("product-added");
+        divProductAdded.textContent = 'hola';
+        contenedorProductosCarrito.appendChild(divProductAdded);
+
+    })
+
+
+
 
 }
 
@@ -134,11 +274,6 @@ const agregarAlCarrito = function (e) {
 
 
 
-
-/*Elementos HTML en los que se van a mostrar los productos dinámicamente*/
-let contenedorProductos = document.getElementById('products');
-let contenedorMain = document.getElementById('main');
-let headerCarrito = document.getElementById('header-cart');
 
 
 /*Función para mostrar el catálogo de productos*/
@@ -453,97 +588,3 @@ botonesCategoria.forEach(boton => {
     });
 
 })
-
-
-
-
-
-/*Función para crear dinámicamente la ventana modal del carrito de compras*/
-const cargarVentanaModalCarrito = function () {
-
-    let divBgModalCarrito = document.createElement("div");
-    divBgModalCarrito.classList.add("bg-modal-carrito");
-
-    let sectionCarrito = document.createElement("section");
-    sectionCarrito.classList.add("carrito");
-
-    let spanCloseModalCarrito = document.createElement("span");
-    spanCloseModalCarrito.classList.add("close-modal-carrito");
-    spanCloseModalCarrito.textContent = "x";
-
-    let divTitulo = document.createElement("div");
-
-    let h1Titulo = document.createElement("h1");
-    h1Titulo.classList.add("h1");
-    h1Titulo.textContent = "Mi carrito";
-
-    let spanSubtitulo = document.createElement("span");
-    spanSubtitulo.classList.add("subtitle-carrito");
-    spanSubtitulo.textContent = "0 items";
-
-    let divProductsContainer = document.createElement("div");
-    divProductsContainer.classList.add("products-container");
-
-    let divAcciones = document.createElement("div");
-
-    let divSubtotal = document.createElement("div");
-    divSubtotal.classList.add("subtotal");
-
-    let pTotal = document.createElement("p");
-    pTotal.textContent = "Total";
-
-    let pTotalNúmero = document.createElement("p");
-    pTotalNúmero.textContent = "$0";
-
-    let buttonCheckout = document.createElement("button");
-    buttonCheckout.classList.add("button", "main_cta", "cta_light-bg");
-    buttonCheckout.textContent = "Checkout"
-
-    let buttonVaciarCarrito = document.createElement("button");
-    buttonVaciarCarrito.classList.add("empty-button");
-    buttonVaciarCarrito.textContent = "Vaciar carrito";
-
-    contenedorMain.appendChild(divBgModalCarrito);
-
-    divBgModalCarrito.appendChild(sectionCarrito);
-
-    sectionCarrito.appendChild(spanCloseModalCarrito);
-    sectionCarrito.appendChild(divTitulo);
-    sectionCarrito.appendChild(divProductsContainer);
-    sectionCarrito.appendChild(divAcciones);
-
-    divTitulo.appendChild(h1Titulo);
-    divTitulo.appendChild(spanSubtitulo);
-
-    divAcciones.appendChild(divSubtotal);
-    divAcciones.appendChild(buttonCheckout);
-    divAcciones.appendChild(buttonVaciarCarrito);
-
-    divSubtotal.appendChild(pTotal);
-    divSubtotal.appendChild(pTotalNúmero);
-
-    headerCarrito.addEventListener("click", function () {
-        divBgModalCarrito.style.display = "flex";
-        setTimeout(() => {
-            sectionCarrito.style.right = "0%";
-        }, 10);
-    });
-
-    spanCloseModalCarrito.addEventListener("click", function () {
-        sectionCarrito.style.right = "-100%";
-        setTimeout(() => {
-            divBgModalCarrito.style.display = "none";
-        }, 150);
-    });
-
-    window.addEventListener("click", function (event) {
-        if (event.target == divBgModalCarrito) {
-            sectionCarrito.style.right = "-100%";
-            setTimeout(() => {
-                divBgModalCarrito.style.display = "none";
-            }, 150);
-        }
-    });
-}
-
-cargarVentanaModalCarrito();
