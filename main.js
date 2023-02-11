@@ -126,11 +126,12 @@ let productos = [{
 
 
 
-/*Elementos HTML en los que se van a mostrar los productos dinámicamente*/
+/*Elementos del DOM en los que se van a mostrar los productos y otra información dinámicamente*/
 let contenedorProductos = document.getElementById('products');
 let contenedorMain = document.getElementById('main');
 let headerCarrito = document.getElementById('header-cart');
-
+let contadorCarrito = document.getElementById('cart-count');
+let totalCarrito = document.getElementById('cart-total');
 
 
 /*Carrito de compras*/
@@ -295,10 +296,7 @@ headerCarrito.addEventListener("click", cargarVentanaModalCarrito);
 
 
 
-/*Agregar productos al carrito de compras*/
-let contadorCarrito = document.getElementById('cart-count');
-let totalCarrito = document.getElementById('cart-total');
-
+/*Función para agregar productos al carrito de compras*/
 const agregarAlCarrito = function (e) {
 
     //Agregamos el producto seleccionado al carrito
@@ -319,9 +317,9 @@ const agregarAlCarrito = function (e) {
 
     //Calculamos el total
     let total = carrito.reduce((acc, producto) => acc + producto.subtotal, 0);
-    console.log(total);
+    // console.log(total);
 
-    //Mostramos la cantidad y el total del carrito en el header
+    //Mostramos la cantidad y el total del carrito en el nav
     const actualizarContadorCarrito = function () {
         let numero = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
         contadorCarrito.setAttribute("data-header-cart-count", numero);
@@ -332,6 +330,9 @@ const agregarAlCarrito = function (e) {
 
 
 }
+
+
+
 
 
 
@@ -409,6 +410,8 @@ cargarProductos(productos);
 
 
 /*Función para crear dinámicamente las ventanas modales de cada producto*/
+let userInputNumber = 0;
+
 const cargarVentanaModalProducto = function (productosElegidos) {
 
     productosElegidos.forEach(producto => {
@@ -579,13 +582,91 @@ const cargarVentanaModalProducto = function (productosElegidos) {
         });
 
 
-        // buttonAgregarCarritoModal.addEventListener('click', agregarAlCarritoDesdeModal);
+
+        /*Funcionalidad de los botones + y - para agregar al carrito*/
+        spanInputPlus.addEventListener("click", () => {
+            userInputNumber++;
+            console.log(userInputNumber);
+            inputNumber.setAttribute("value", userInputNumber);
+        })
+
+        spanInputMinus.addEventListener("click", () => {
+
+            if (userInputNumber <= 0) {
+                userInputNumber = 0;
+            } else {
+                userInputNumber--;
+            }
+
+            console.log(userInputNumber)
+            inputNumber.setAttribute("value", userInputNumber);
+
+        })
+
+
+        /*Función para agregar productos al carrito desde las ventanas modales*/
+        const agregarAlCarritoDesdeModal = function (e) {
+
+            //Agregamos el producto seleccionado al carrito
+            let idBoton = e.currentTarget.id;
+            let productoAgregado = productos.find(producto => `agregar${producto.id}modal` === idBoton);
+
+            if (carrito.some(producto => `agregar${producto.id}modal` === idBoton)) {
+
+                productoAgregado.cantidad++;
+
+                console.log(carrito);
+            } else {
+
+                productoAgregado.cantidad = 1;
+                carrito.push(productoAgregado);
+                console.log(carrito);
+
+            }
+
+            // //Calculamos el subtotal
+            // productoAgregado.subtotal = productoAgregado.precio * productoAgregado.cantidad;
+
+            // //Calculamos el total
+            // let total = carrito.reduce((acc, producto) => acc + producto.subtotal, 0);
+            // // console.log(total);
+
+            // //Mostramos la cantidad y el total del carrito en el nav
+            // const actualizarContadorCarrito = function () {
+            //     let numero = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+            //     contadorCarrito.setAttribute("data-header-cart-count", numero);
+
+            //     totalCarrito.textContent = `$${total.toLocaleString('de-DE')}`;
+            // }
+            // actualizarContadorCarrito();
+
+
+        }
+
+
+        buttonAgregarCarritoModal.addEventListener('click', agregarAlCarritoDesdeModal);
+
+
 
     });
 
 }
 
 cargarVentanaModalProducto(productos);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*Función para cambiar de categoría en el catálogo de productos (y rotar los banners flotantes)*/
@@ -618,7 +699,6 @@ botonesCategoria.forEach(boton => {
                 }, 10000);
             }
             eliminarBanner();
-
         }
 
         //Mostramos visualmente la elección de categoría del usuario
@@ -646,25 +726,4 @@ botonesCategoria.forEach(boton => {
 
     });
 
-})
-
-
-
-//Mostramos los productos agregados en la ventana modal del carrito
-// let contenedorProductosCarrito = document.getElementById('products-container-carrito');
-
-// const productosEnCarrito = function () {
-
-//     carrito.forEach(producto => {
-
-//         let divProductAdded = document.createElement("div");
-//         divProductAdded.classList.add("product-added");
-//         divProductAdded.textContent = producto.id;
-
-//         contenedorProductosCarrito.appendChild(divProductAdded);
-
-//     })
-
-
-
-// }
+});
