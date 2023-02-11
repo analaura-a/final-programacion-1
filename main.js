@@ -220,22 +220,25 @@ const cargarVentanaModalProducto = function (productosElegidos) {
         divGalleryThumbnails.classList.add("gallery-thumbnails");
 
         let galleryThumbnail1 = document.createElement("img");
-        galleryThumbnail1.classList.add("selected");
+        galleryThumbnail1.classList.add("selected", "thumbnail");
         galleryThumbnail1.setAttribute("src", `assets/imgs/${producto.imagen1}.jpg`);
         galleryThumbnail1.setAttribute("alt", producto.nombre);
         galleryThumbnail1.setAttribute('id', `${producto.id}-1`);
 
         let galleryThumbnail2 = document.createElement("img");
+        galleryThumbnail2.classList.add("thumbnail");
         galleryThumbnail2.setAttribute("src", `assets/imgs/${producto.imagen2}.jpg`);
         galleryThumbnail2.setAttribute("alt", producto.nombre);
         galleryThumbnail2.setAttribute('id', `${producto.id}-2`);
 
         let galleryThumbnail3 = document.createElement("img");
+        galleryThumbnail3.classList.add("thumbnail");
         galleryThumbnail3.setAttribute("src", `assets/imgs/${producto.imagen3}.jpg`);
         galleryThumbnail3.setAttribute("alt", producto.nombre);
         galleryThumbnail3.setAttribute('id', `${producto.id}-3`);
 
         let galleryThumbnail4 = document.createElement("img");
+        galleryThumbnail4.classList.add("thumbnail");
         galleryThumbnail4.setAttribute("src", `assets/imgs/${producto.imagen4}.jpg`);
         galleryThumbnail4.setAttribute("alt", producto.nombre);
         galleryThumbnail4.setAttribute('id', `${producto.id}-4`);
@@ -342,8 +345,25 @@ const cargarVentanaModalProducto = function (productosElegidos) {
         });
 
 
-    })
+        /*Funcionamiento de la galería de fotos*/
+        let thumbnailsGaleria = [galleryThumbnail1, galleryThumbnail2, galleryThumbnail3, galleryThumbnail4];
 
+        thumbnailsGaleria.forEach(thumbnail => {
+            thumbnail.addEventListener("click", (e) => {
+
+                //Destacamos visualmente la elección del usuario
+                thumbnailsGaleria.forEach(boton => {
+                    boton.classList.remove("selected");
+                });
+                e.currentTarget.classList.add("selected");
+
+                //Reemplazamos el src de la imagen principal por la de la imagen en miniatura seleccionada
+                galleryImg.setAttribute("src", `${e.currentTarget.src}`);
+
+            });
+        });
+
+    });
 
 }
 
