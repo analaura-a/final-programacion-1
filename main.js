@@ -143,7 +143,7 @@ let carritoLS = JSON.parse(localStorage.getItem("carrito"));
 if (carritoLS) {
     carrito = carritoLS;
 } else {
-    carrito = []
+    carrito = [];
 }
 
 
@@ -236,18 +236,30 @@ function renderizarCarrito() {
             }
 
             //Renderizamos nuevamente las cantidades del carrito en el nav
-            contadorCarrito.setAttribute("data-header-cart-count", carrito.reduce((acc, producto) => acc + producto.cantidad, 0));
-            let productoAgregado = productos.find(producto => `eliminar${producto.id}` === idBoton);
-            productoAgregado.subtotal = productoAgregado.precio * productoAgregado.cantidad;
-            let total = carrito.reduce((acc, producto) => acc + producto.subtotal, 0);
-            totalCarrito.textContent = `$${total.toLocaleString('de-DE')}`;
+            actualizarContadorCarrito();
 
+            //Guardamos el carrito en localStorage
             guardarLocalStorage();
 
         });
 
     });
 }
+
+
+/*Función para actualizar las cantidades del carrito en el nav*/
+const actualizarContadorCarrito = function () {
+    let numero = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+    contadorCarrito.setAttribute("data-header-cart-count", numero);
+
+    carrito.forEach((producto) => {
+        producto.subtotal = producto.precio * producto.cantidad;
+    });
+
+    let total = carrito.reduce((acc, producto) => acc + producto.subtotal, 0);
+    totalCarrito.textContent = `$${total.toLocaleString('de-DE')}`;
+}
+actualizarContadorCarrito();
 
 
 /*Función para crear la ventana modal del carrito de compras (donde se muestran los productos agregados)*/
@@ -354,9 +366,9 @@ const cargarVentanaModalCarrito = function () {
         renderizarCarrito();
 
         //Renderizamos nuevamente las cantidades del carrito en el nav
-        contadorCarrito.setAttribute("data-header-cart-count", 0);
-        totalCarrito.textContent = "$0";
+        actualizarContadorCarrito();
 
+        //Guardamos el carrito en localStorage
         guardarLocalStorage();
 
     });
@@ -382,21 +394,10 @@ const agregarAlCarrito = function (e) {
         console.log(carrito);
     }
 
-    //Calculamos el subtotal
-    productoAgregado.subtotal = productoAgregado.precio * productoAgregado.cantidad;
-
-    //Calculamos el total
-    let total = carrito.reduce((acc, producto) => acc + producto.subtotal, 0);
-
-    //Mostramos la cantidad y el total del carrito en el nav
-    const actualizarContadorCarrito = function () {
-        let numero = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
-        contadorCarrito.setAttribute("data-header-cart-count", numero);
-
-        totalCarrito.textContent = `$${total.toLocaleString('de-DE')}`;
-    }
+    //Renderizamos las cantidades del carrito en el nav
     actualizarContadorCarrito();
 
+    //Guardamos el carrito en localStorage
     guardarLocalStorage();
 
 }
@@ -688,21 +689,10 @@ const cargarVentanaModalProducto = function (productosElegidos) {
                 carrito.push(productoAgregado);
             }
 
-            //Calculamos el subtotal
-            productoAgregado.subtotal = productoAgregado.precio * productoAgregado.cantidad;
-
-            //Calculamos el total
-            let total = carrito.reduce((acc, producto) => acc + producto.subtotal, 0);
-
-            //Mostramos la cantidad y el total del carrito en el nav
-            const actualizarContadorCarrito = function () {
-                let numero = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
-                contadorCarrito.setAttribute("data-header-cart-count", numero);
-
-                totalCarrito.textContent = `$${total.toLocaleString('de-DE')}`;
-            }
+            //Renderizamos las cantidades del carrito en el nav
             actualizarContadorCarrito();
 
+            //Guardamos el carrito en localStorage
             guardarLocalStorage();
 
         }
