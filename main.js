@@ -137,14 +137,21 @@ let pTotalNúmero;
 
 
 /*Carrito de compras*/
-let carrito = [];
+let carrito;
+let carritoLS = JSON.parse(localStorage.getItem("carrito"));
+
+if (carritoLS) {
+    carrito = carritoLS;
+} else {
+    carrito = []
+}
+
 
 /*Función para actualizar dinámicamente los productos que se muestran en el carrito*/
 function renderizarCarrito() {
     carrito.forEach((producto) => {
 
         spanSubtitulo.textContent = `${carrito.reduce((acc, producto) => acc + producto.cantidad, 0)} items`;
-
         pTotalNúmero.textContent = `$${carrito.reduce((acc, producto) => acc + producto.subtotal, 0).toLocaleString('de-DE')}`;
 
         let divProductAdded = document.createElement("div");
@@ -205,7 +212,6 @@ function renderizarCarrito() {
 
         svgCarrito.appendChild(pathCarrito);
 
-
         /*Función para eliminar un producto particular del carrito*/
         spanDeleteItem.addEventListener("click", (e) => {
 
@@ -235,6 +241,8 @@ function renderizarCarrito() {
             productoAgregado.subtotal = productoAgregado.precio * productoAgregado.cantidad;
             let total = carrito.reduce((acc, producto) => acc + producto.subtotal, 0);
             totalCarrito.textContent = `$${total.toLocaleString('de-DE')}`;
+
+            guardarLocalStorage();
 
         });
 
@@ -349,6 +357,8 @@ const cargarVentanaModalCarrito = function () {
         contadorCarrito.setAttribute("data-header-cart-count", 0);
         totalCarrito.textContent = "$0";
 
+        guardarLocalStorage();
+
     });
 
 }
@@ -387,6 +397,14 @@ const agregarAlCarrito = function (e) {
     }
     actualizarContadorCarrito();
 
+    guardarLocalStorage();
+
+}
+
+
+/*Función para guardar el carrito en el localStorage*/
+const guardarLocalStorage = function () {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
 
@@ -464,8 +482,6 @@ cargarProductos(productos);
 
 
 /*Función para crear dinámicamente las ventanas modales de cada producto*/
-
-
 const cargarVentanaModalProducto = function (productosElegidos) {
 
     productosElegidos.forEach(producto => {
@@ -686,6 +702,8 @@ const cargarVentanaModalProducto = function (productosElegidos) {
                 totalCarrito.textContent = `$${total.toLocaleString('de-DE')}`;
             }
             actualizarContadorCarrito();
+
+            guardarLocalStorage();
 
         }
 
