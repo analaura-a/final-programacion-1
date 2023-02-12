@@ -464,7 +464,7 @@ cargarProductos(productos);
 
 
 /*Función para crear dinámicamente las ventanas modales de cada producto*/
-let userInputNumber = 1;
+
 
 const cargarVentanaModalProducto = function (productosElegidos) {
 
@@ -635,6 +635,8 @@ const cargarVentanaModalProducto = function (productosElegidos) {
         });
 
         /*Funcionalidad para que el usuario pueda elegir la cantidad de productos que quiere agregar al carrito*/
+        let userInputNumber = 1;
+
         spanInputPlus.addEventListener("click", () => {
             userInputNumber++;
             inputNumber.setAttribute("value", userInputNumber);
