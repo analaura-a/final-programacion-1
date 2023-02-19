@@ -917,7 +917,7 @@ header {
 
 /*Componente CHECKOUT*/
 .bg-modal-checkout {
-    display: block;
+    display: none;
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -939,7 +939,7 @@ header {
     padding: 40px;
     border-radius: 9px;
 
-    background: var(--light-color);
+    background: var(--dark-color);
 
     display: flex;
     justify-content: center;
@@ -1014,8 +1014,13 @@ fieldset:nth-child(2)>div:nth-child(2) {
     overflow-y: scroll;
 }
 
+fieldset:nth-child(2)>.subtotal {
+    color: var(--light-color);
+    margin-top: 20px;
+}
+
 .h2-light {
-    color: var(--light-color)!important;
+    color: var(--light-color) !important;
 }
 
 .opciones-pago {
@@ -1038,9 +1043,11 @@ fieldset:nth-child(2)>div:nth-child(2) {
 }
 
 .button-checkout {
-    margin: 0 auto;
+    margin: 0 auto 30px auto;
     display: block;
     margin-top: 40px;
+    padding: 0.6rem 3rem 0.5rem 4rem;
+    background-position: 2.3rem center;
 }
 
 

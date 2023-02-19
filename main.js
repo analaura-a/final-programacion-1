@@ -769,242 +769,280 @@ botonesCategoria.forEach(boton => {
 
 
 /*Función para crear el formulario de Checkout*/
-
 const crearCheckout = function () {
 
-    let bgContenedorCheckout = document.createElement("div");
-    bgContenedorCheckout.classList.add("bg-modal-checkout");
+    //Validamos que el carrito no esté vacío
+    if (carrito == [] || carrito == "") {
+        return;
+    } else {
+        let bgContenedorCheckout = document.createElement("div");
+        bgContenedorCheckout.classList.add("bg-modal-checkout");
 
-    let contenedorCheckout = document.createElement("div");
-    contenedorCheckout.setAttribute('id', 'formulario');
-    contenedorCheckout.classList.add('contenedor-checkout');
+        let contenedorCheckout = document.createElement("div");
+        contenedorCheckout.setAttribute('id', 'formulario');
+        contenedorCheckout.classList.add('contenedor-checkout');
 
-    let contenedorFormulario = document.createElement('form');
-    contenedorFormulario.setAttribute("id", "formulario-datos-personales");
+        let contenedorFormulario = document.createElement('form');
+        contenedorFormulario.setAttribute("id", "formulario-datos-personales");
 
-    let contenedorPersonal = document.createElement('fieldset');
-    contenedorPersonal.classList.add("primeros-contenedores");
+        let contenedorPersonal = document.createElement('fieldset');
+        contenedorPersonal.classList.add("primeros-contenedores");
 
-    let divContenedorPersonal = document.createElement('div');
-    divContenedorPersonal.classList.add("Contenedor-personal");
+        let divContenedorPersonal = document.createElement('div');
+        divContenedorPersonal.classList.add("Contenedor-personal");
 
-    let tituloFormulario = document.createElement('div');
-    tituloFormulario.classList.add("titulo-formulario");
+        let tituloFormulario = document.createElement('div');
+        tituloFormulario.classList.add("titulo-formulario");
 
-    let tituloPricipal = document.createElement('h2');
-    tituloPricipal.textContent = 'Método de envío';
+        let tituloPricipal = document.createElement('h2');
+        tituloPricipal.textContent = 'Método de envío';
 
-    let paso1 = document.createElement('p');
-    paso1.textContent = 'PASO  1 - CHECKOUT';
-    paso1.classList.add("subtitle");
+        let paso1 = document.createElement('p');
+        paso1.textContent = 'PASO  1 - CHECKOUT';
+        paso1.classList.add("subtitle");
 
-    let nombre = document.createElement('label');
-    nombre.textContent = 'Nombre y Apellido (*)';
+        let nombre = document.createElement('label');
+        nombre.textContent = 'Nombre y Apellido (*)';
 
-    let input = document.createElement('input');
-    input.setAttribute("required", "true");
+        let input = document.createElement('input');
+        input.setAttribute("required", "true");
 
-    let mail = document.createElement("label");
-    mail.textContent = 'Mail (*)';
+        let mail = document.createElement("label");
+        mail.textContent = 'Mail (*)';
 
-    let input1 = document.createElement('input');
-    input1.setAttribute('type', "text");
-    input1.setAttribute("required", "true");
+        let input1 = document.createElement('input');
+        input1.setAttribute('type', "text");
+        input1.setAttribute("required", "true");
 
-    let telefono = document.createElement('label');
-    telefono.textContent = 'Telefono (opcional)';
+        let telefono = document.createElement('label');
+        telefono.textContent = 'Telefono (opcional)';
 
-    let inputTelefono = document.createElement('input');
-    inputTelefono.setAttribute('type', "number");
+        let inputTelefono = document.createElement('input');
+        inputTelefono.setAttribute('type', "number");
 
-    let direccion = document.createElement('label');
-    direccion.innerHTML = 'Direccion (*)';
+        let direccion = document.createElement('label');
+        direccion.innerHTML = 'Direccion (*)';
 
-    let inputDireccion = document.createElement('input');
-    inputDireccion.setAttribute('type', "text");
-    inputDireccion.setAttribute("required", "true");
+        let inputDireccion = document.createElement('input');
+        inputDireccion.setAttribute('type', "text");
+        inputDireccion.setAttribute("required", "true");
 
-    let contenedorChico = document.createElement('div');
-    contenedorChico.classList.add("contenedores-chicos");
+        let contenedorChico = document.createElement('div');
+        contenedorChico.classList.add("contenedores-chicos");
 
-    let ciudad = document.createElement('label');
-    ciudad.textContent = 'Ciudad (*)';
-    ciudad.classList.add("contenedor-infoCiudad");
+        let ciudad = document.createElement('label');
+        ciudad.textContent = 'Ciudad (*)';
+        ciudad.classList.add("contenedor-infoCiudad");
 
-    let inputCiudad = document.createElement('input');
-    inputCiudad.setAttribute('type', "text");
-    inputCiudad.setAttribute('required', "true");
+        let inputCiudad = document.createElement('input');
+        inputCiudad.setAttribute('type', "text");
+        inputCiudad.setAttribute('required', "true");
 
-    let codigoPostal = document.createElement('label');
-    codigoPostal.textContent = 'Código postal (*)';
-    codigoPostal.classList.add("contenedor-infoCiudad");
+        let codigoPostal = document.createElement('label');
+        codigoPostal.textContent = 'Código postal (*)';
+        codigoPostal.classList.add("contenedor-infoCiudad");
 
-    let inputCodigo = document.createElement('input');
-    inputCodigo.setAttribute('type', 'number');
-    inputCodigo.setAttribute('id', ' codigo-postal');
-    inputCodigo.setAttribute("required", "true");
+        let inputCodigo = document.createElement('input');
+        inputCodigo.setAttribute('type', 'number');
+        inputCodigo.setAttribute('id', ' codigo-postal');
+        inputCodigo.setAttribute("required", "true");
 
-    let divTarjeta = document.createElement('div');
-    divTarjeta.setAttribute("id", "info-tarjeta");
+        let divTarjeta = document.createElement('div');
+        divTarjeta.setAttribute("id", "info-tarjeta");
 
-    let divTituloTarjeta = document.createElement('div')
-    divTituloTarjeta.classList.add("titulo-pago");
+        let divTituloTarjeta = document.createElement('div')
+        divTituloTarjeta.classList.add("titulo-pago");
 
-    let metodoPago = document.createElement('h2');
-    metodoPago.textContent = "Método de pago";
+        let metodoPago = document.createElement('h2');
+        metodoPago.textContent = "Método de pago";
 
-    let paso2 = document.createElement('p');
-    paso2.textContent = "PASO 2 - CHECKOUT";
-    paso2.classList.add("subtitle");
+        let paso2 = document.createElement('p');
+        paso2.textContent = "PASO 2 - CHECKOUT";
+        paso2.classList.add("subtitle");
 
-    let titularTarjeta = document.createElement('label');
-    titularTarjeta.textContent = 'Titular de la Tarjeta (*)';
+        let titularTarjeta = document.createElement('label');
+        titularTarjeta.textContent = 'Titular de la Tarjeta (*)';
 
-    let inputTitular = document.createElement('input');
-    inputTitular.setAttribute('type', "text");
-    inputTitular.setAttribute("required", "true");
+        let inputTitular = document.createElement('input');
+        inputTitular.setAttribute('type', "text");
+        inputTitular.setAttribute("required", "true");
 
-    let numeroTarjeta = document.createElement('label');
-    numeroTarjeta.textContent = 'Numero de la Tarjeta (*)';
+        let numeroTarjeta = document.createElement('label');
+        numeroTarjeta.textContent = 'Numero de la Tarjeta (*)';
 
-    let inputNumero = document.createElement('input');
-    inputNumero.setAttribute('type', "number");
-    inputNumero.setAttribute("required", "true");
+        let inputNumero = document.createElement('input');
+        inputNumero.setAttribute('type', "number");
+        inputNumero.setAttribute("required", "true");
 
-    let contenedorChicoTarjeta = document.createElement('div');
-    contenedorChicoTarjeta.classList.add("contenedores-chicos");
+        let contenedorChicoTarjeta = document.createElement('div');
+        contenedorChicoTarjeta.classList.add("contenedores-chicos");
 
-    let labelVencimiento = document.createElement('label');
-    labelVencimiento.classList.add("contenedor-infoCiudad");
-    labelVencimiento.textContent = "Vencimiento (*)";
+        let labelVencimiento = document.createElement('label');
+        labelVencimiento.classList.add("contenedor-infoCiudad");
+        labelVencimiento.textContent = "Vencimiento (*)";
 
-    let inputVencimiento = document.createElement('input');
-    inputVencimiento.setAttribute('type', "number");
-    inputVencimiento.setAttribute("required", "true");
+        let inputVencimiento = document.createElement('input');
+        inputVencimiento.setAttribute('type', "number");
+        inputVencimiento.setAttribute("required", "true");
 
-    let labelCVV = document.createElement('label');
-    labelCVV.classList.add("contenedor-infoCiudad");
-    labelCVV.textContent = "CVV (*)";
+        let labelCVV = document.createElement('label');
+        labelCVV.classList.add("contenedor-infoCiudad");
+        labelCVV.textContent = "CVV (*)";
 
-    let inputCVV = document.createElement('input');
-    inputCVV.setAttribute('type', "number");
-    inputCVV.setAttribute("required", "true");
+        let inputCVV = document.createElement('input');
+        inputCVV.setAttribute('type', "number");
+        inputCVV.setAttribute("required", "true");
 
-    let contenedorPaso3 = document.createElement("fieldset");
+        let contenedorPaso3 = document.createElement("fieldset");
 
-    let contenedorTituloCompra = document.createElement("div");
-    contenedorTituloCompra.classList.add("titulo-compras");
+        let contenedorTituloCompra = document.createElement("div");
+        contenedorTituloCompra.classList.add("titulo-compras");
 
-    let tituloCompras = document.createElement("h2");
-    tituloCompras.textContent = "Resumen de compra";
+        let tituloCompras = document.createElement("h2");
+        tituloCompras.textContent = "Resumen de compra";
 
-    let paso3 = document.createElement("p");
-    paso3.textContent = "PASO 3 - CHECKOUT";
-    paso3.classList.add("subtitle");
+        let paso3 = document.createElement("p");
+        paso3.textContent = "PASO 3 - CHECKOUT";
+        paso3.classList.add("subtitle");
 
-    let divProductsContainerCheckout = document.createElement("div");
+        let divProductsContainerCheckout = document.createElement("div");
 
-    carrito.forEach(producto => {
+        carrito.forEach(producto => {
 
-        let divProductAdded = document.createElement("div");
-        divProductAdded.classList.add("product-added");
+            let divProductAdded = document.createElement("div");
+            divProductAdded.classList.add("product-added");
 
-        let divProductInfo = document.createElement("div");
-        divProductInfo.classList.add("product-info");
+            let divProductInfo = document.createElement("div");
+            divProductInfo.classList.add("product-info");
 
-        let imgCarrito = document.createElement("img");
-        imgCarrito.classList.add("img-carrito");
-        imgCarrito.setAttribute("src", `assets/imgs/${producto.imagen1}.jpg`);
-        imgCarrito.setAttribute("alt", producto.nombre);
+            let imgCarrito = document.createElement("img");
+            imgCarrito.classList.add("img-carrito");
+            imgCarrito.setAttribute("src", `assets/imgs/${producto.imagen1}.jpg`);
+            imgCarrito.setAttribute("alt", producto.nombre);
 
-        let divDivProductInfo = document.createElement("div");
+            let divDivProductInfo = document.createElement("div");
 
-        let h2Carrito = document.createElement("h2");
-        h2Carrito.classList.add("h2", "h2-light");
-        h2Carrito.textContent = producto.nombre;
+            let h2Carrito = document.createElement("h2");
+            h2Carrito.classList.add("h2", "h2-light");
+            h2Carrito.textContent = producto.nombre;
 
-        let pProductoCarrito = document.createElement("p");
-        pProductoCarrito.textContent = `$${producto.precio.toLocaleString('de-DE')}`;
-        pProductoCarrito.classList.add("h2-light");
+            let pProductoCarrito = document.createElement("p");
+            pProductoCarrito.textContent = `$${producto.precio.toLocaleString('de-DE')}`;
+            pProductoCarrito.classList.add("h2-light");
 
-        let divProductAction = document.createElement("div");
-        divProductAction.classList.add("product-action");
+            let divProductAction = document.createElement("div");
+            divProductAction.classList.add("product-action");
 
-        let spanCantidad = document.createElement("span");
-        spanCantidad.classList.add("cantidad");
-        spanCantidad.textContent = `Cantidad: ${producto.cantidad}`;
+            let spanCantidad = document.createElement("span");
+            spanCantidad.classList.add("cantidad");
+            spanCantidad.textContent = `Cantidad: ${producto.cantidad}`;
 
-        divProductsContainerCheckout.appendChild(divProductAdded);
+            divProductsContainerCheckout.appendChild(divProductAdded);
 
-        divProductAdded.appendChild(divProductInfo);
-        divProductAdded.appendChild(divProductAction);
+            divProductAdded.appendChild(divProductInfo);
+            divProductAdded.appendChild(divProductAction);
 
-        divProductInfo.appendChild(imgCarrito);
-        divProductInfo.appendChild(divDivProductInfo);
+            divProductInfo.appendChild(imgCarrito);
+            divProductInfo.appendChild(divDivProductInfo);
 
-        divDivProductInfo.appendChild(h2Carrito);
-        divDivProductInfo.appendChild(pProductoCarrito);
+            divDivProductInfo.appendChild(h2Carrito);
+            divDivProductInfo.appendChild(pProductoCarrito);
 
-        divProductAction.appendChild(spanCantidad);
+            divProductAction.appendChild(spanCantidad);
 
-    });
+        });
 
+        let total = carrito.reduce((acc, producto) => acc + producto.subtotal, 0);
 
-    let btnComprar = document.createElement("input");
-    btnComprar.setAttribute("type", "submit");
-    btnComprar.setAttribute("value", "COMPRAR");
-    btnComprar.classList.add("button", "main_cta", "button-checkout");
+        let divSubtotal = document.createElement("div");
+        divSubtotal.classList.add("subtotal");
 
-    contenedorMain.appendChild(bgContenedorCheckout);
+        let pTotal = document.createElement("p");
+        pTotal.innerHTML = "Total";
 
-    bgContenedorCheckout.appendChild(contenedorCheckout);
+        let pNumero = document.createElement("p");
+        pNumero.textContent = `$${total.toLocaleString('de-DE')}`;;
 
-    contenedorCheckout.appendChild(contenedorFormulario);
+        let btnComprar = document.createElement("input");
+        btnComprar.setAttribute("type", "submit");
+        btnComprar.setAttribute("value", "COMPRAR");
+        btnComprar.classList.add("button", "main_cta", "button-checkout");
 
-    contenedorFormulario.appendChild(contenedorPersonal);
+        let spanCloseModalCheckout = document.createElement("span");
+        spanCloseModalCheckout.classList.add("close-modal-carrito");
+        spanCloseModalCheckout.textContent = "x";
 
-    contenedorPersonal.appendChild(divContenedorPersonal);
+        contenedorMain.appendChild(bgContenedorCheckout);
 
-    divContenedorPersonal.appendChild(tituloFormulario);
-    divContenedorPersonal.appendChild(nombre);
-    divContenedorPersonal.appendChild(input);
-    divContenedorPersonal.appendChild(mail);
-    divContenedorPersonal.appendChild(input1);
-    divContenedorPersonal.appendChild(telefono);
-    divContenedorPersonal.appendChild(inputTelefono);
-    divContenedorPersonal.appendChild(direccion);
-    divContenedorPersonal.appendChild(inputDireccion);
-    divContenedorPersonal.appendChild(contenedorChico);
+        bgContenedorCheckout.appendChild(contenedorCheckout);
 
-    tituloFormulario.appendChild(tituloPricipal);
-    tituloFormulario.appendChild(paso1);
+        contenedorCheckout.appendChild(contenedorFormulario);
+        contenedorCheckout.appendChild(spanCloseModalCheckout);
 
-    contenedorChico.appendChild(ciudad);
-    ciudad.appendChild(inputCiudad);
-    contenedorChico.appendChild(codigoPostal);
-    codigoPostal.appendChild(inputCodigo);
+        contenedorFormulario.appendChild(contenedorPersonal);
 
-    contenedorPersonal.appendChild(divTarjeta);
-    divTarjeta.appendChild(divTituloTarjeta);
-    divTituloTarjeta.appendChild(metodoPago);
-    divTituloTarjeta.appendChild(paso2);
+        contenedorPersonal.appendChild(divContenedorPersonal);
 
-    divTarjeta.appendChild(titularTarjeta);
-    divTarjeta.appendChild(inputTitular);
-    divTarjeta.appendChild(numeroTarjeta);
-    divTarjeta.appendChild(inputNumero);
-    divTarjeta.appendChild(contenedorChicoTarjeta);
+        divContenedorPersonal.appendChild(tituloFormulario);
+        divContenedorPersonal.appendChild(nombre);
+        divContenedorPersonal.appendChild(input);
+        divContenedorPersonal.appendChild(mail);
+        divContenedorPersonal.appendChild(input1);
+        divContenedorPersonal.appendChild(telefono);
+        divContenedorPersonal.appendChild(inputTelefono);
+        divContenedorPersonal.appendChild(direccion);
+        divContenedorPersonal.appendChild(inputDireccion);
+        divContenedorPersonal.appendChild(contenedorChico);
 
-    contenedorChicoTarjeta.appendChild(labelVencimiento);
-    labelVencimiento.appendChild(inputVencimiento);
-    contenedorChicoTarjeta.appendChild(labelCVV);
-    labelCVV.appendChild(inputCVV);
+        tituloFormulario.appendChild(tituloPricipal);
+        tituloFormulario.appendChild(paso1);
 
-    contenedorFormulario.appendChild(contenedorPaso3)
-    contenedorPaso3.appendChild(contenedorTituloCompra)
-    contenedorTituloCompra.appendChild(tituloCompras)
-    contenedorTituloCompra.appendChild(paso3);
-    contenedorPaso3.appendChild(divProductsContainerCheckout);
-    contenedorPaso3.appendChild(btnComprar);
+        contenedorChico.appendChild(ciudad);
+        ciudad.appendChild(inputCiudad);
+        contenedorChico.appendChild(codigoPostal);
+        codigoPostal.appendChild(inputCodigo);
+
+        contenedorPersonal.appendChild(divTarjeta);
+        divTarjeta.appendChild(divTituloTarjeta);
+        divTituloTarjeta.appendChild(metodoPago);
+        divTituloTarjeta.appendChild(paso2);
+
+        divTarjeta.appendChild(titularTarjeta);
+        divTarjeta.appendChild(inputTitular);
+        divTarjeta.appendChild(numeroTarjeta);
+        divTarjeta.appendChild(inputNumero);
+        divTarjeta.appendChild(contenedorChicoTarjeta);
+
+        contenedorChicoTarjeta.appendChild(labelVencimiento);
+        labelVencimiento.appendChild(inputVencimiento);
+        contenedorChicoTarjeta.appendChild(labelCVV);
+        labelCVV.appendChild(inputCVV);
+
+        contenedorFormulario.appendChild(contenedorPaso3)
+        contenedorPaso3.appendChild(contenedorTituloCompra)
+        contenedorTituloCompra.appendChild(tituloCompras)
+        contenedorTituloCompra.appendChild(paso3);
+        contenedorPaso3.appendChild(divProductsContainerCheckout);
+        contenedorPaso3.appendChild(divSubtotal);
+        contenedorPaso3.appendChild(btnComprar);
+
+        divSubtotal.appendChild(pTotal);
+        divSubtotal.appendChild(pNumero);
+
+        bgContenedorCheckout.style.display = "block";
+
+        spanCloseModalCheckout.addEventListener("click", function () {
+
+            bgContenedorCheckout.style.display = "none";
+
+        });
+
+        window.addEventListener("click", function (event) {
+            if (event.target == bgContenedorCheckout) {
+                bgContenedorCheckout.style.display = "none";
+            }
+        });
+
+    }
 
 }
