@@ -1043,6 +1043,22 @@ const crearCheckout = function () {
             }
         });
 
+
+        contenedorFormulario.addEventListener("submit", (e) => {
+            //Una vez que el formulario se envía, lo volvemos a vaciar como lo estaba en un inicio.
+            carrito = [];
+            console.log(carrito);
+
+            //Renderizamos nuevamente el carrito
+            renderizarCarrito();
+
+            //Renderizamos nuevamente las cantidades del carrito en el nav
+            actualizarContadorCarrito();
+
+            //Guardamos el carrito en localStorage
+            guardarLocalStorage();
+
+        })
     }
 
 }
