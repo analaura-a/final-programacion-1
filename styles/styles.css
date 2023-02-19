@@ -658,7 +658,12 @@ header {
 
 .product-quantity {
     display: flex;
+    align-items: center;
     gap: 20px;
+}
+
+.product-quantity>button {
+    height: 45px;
 }
 
 .input-price {
@@ -907,6 +912,135 @@ header {
     .product-added {
         padding: 18px 18px 18px 0;
     }
+}
+
+
+/*Componente CHECKOUT*/
+.bg-modal-checkout {
+    display: block;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    background-color: var(--bg-modal-color);
+}
+
+.contenedor-checkout {
+    position: relative;
+    width: 85%;
+    height: 95%;
+    max-width: 1300px;
+    margin: 3% auto;
+    padding: 40px;
+    border-radius: 9px;
+
+    background: var(--light-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    -webkit-animation-name: fadein;
+    -webkit-animation-duration: 0.5s;
+    animation-name: fadein;
+    animation-duration: 0.5s;
+
+    color: var(--light-color);
+    font-family: var(--font-family);
+
+    overflow-y: scroll;
+}
+
+#formulario-datos-personales {
+    width: 100%;
+    height: 100%;
+    background: var(--dark-color);
+    align-items: center;
+    border-radius: 9px;
+    outline: none;
+}
+
+.titulo-formulario,
+.titulo-pago,
+.titulo-compras {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+label {
+    padding: 5px 0px;
+}
+
+input {
+    border-radius: 15px;
+    padding: 15px 8px;
+    outline: none;
+    border: none;
+
+}
+
+input:active,
+input:focus {
+    border-bottom: 3px solid var(--accent-color);
+}
+
+.Contenedor-personal,
+#info-tarjeta {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 30px;
+    justify-content: space-between;
+}
+
+.primeros-contenedores {
+    display: flex;
+    justify-content: space-around;
+    border: none;
+}
+
+fieldset:nth-child(2) {
+    border: none;
+    width: 88%;
+    margin: 0 auto;
+}
+
+fieldset:nth-child(2)>div:nth-child(2) {
+    height: 111px;
+    overflow-y: scroll;
+}
+
+.h2-light {
+    color: var(--light-color)!important;
+}
+
+.opciones-pago {
+    display: inline-block;
+    font-size: 12px;
+}
+
+.contenedor-infoCiudad {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.contenedor-infoCiudad input {
+    margin: 5px 0;
+}
+
+.contenedores-chicos {
+    display: flex;
+}
+
+.button-checkout {
+    margin: 0 auto;
+    display: block;
+    margin-top: 40px;
 }
 
 
