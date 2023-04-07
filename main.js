@@ -730,14 +730,14 @@ botonesCategoria.forEach(boton => {
             bannerFlotante.setAttribute("src", eleccionRandom);
 
             //Desaparición del banner después de 10 segundos
-            let eliminarBanner = function () {
-                clearTimeout(timerID);
+            // let eliminarBanner = function () {
+            //     clearTimeout(timerID);
 
-                timerID = setTimeout(() => {
-                    bannerFlotante.style.display = "none";
-                }, 10000);
-            }
-            eliminarBanner();
+            //     timerID = setTimeout(() => {
+            //         bannerFlotante.style.display = "none";
+            //     }, 10000);
+            // }
+            // eliminarBanner();
         }
 
         //Mostramos visualmente la elección de categoría del usuario
